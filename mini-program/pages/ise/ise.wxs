@@ -1,0 +1,26 @@
+var currentChange = function (event, owner) {
+  var swiperItems = owner.selectAllComponents('.center')
+  var current = event.detail.current
+  swiperItems.forEach(function (item, index, arr) {
+    item.removeClass('active')
+  }) 
+  swiperItems[current].addClass('active')
+  owner.callMethod('swiperChange', { detail: event.detail})
+  
+}
+var toggle = function (event, owner) {
+  var img = owner.selectComponent('.right-img')
+  var bdscore = owner.selectComponent('.bd-score')
+  if (img.hasClass('right-img-hover')) {
+    img.removeClass('right-img-hover')
+    bdscore.removeClass('bd-score-show')
+  }else {
+    img.addClass('right-img-hover')
+    bdscore.addClass('bd-score-show')
+  }
+
+}
+module.exports = {
+  currentChange: currentChange,
+  toggle: toggle
+}

@@ -1,0 +1,13 @@
+<!--pages/home/home.wxml-->
+<view>
+
+  <navigator style='display:block;line-height:40px;color:blue;' url='../ise/ise'>语音测评</navigator>
+  <navigator style='display:block;line-height:40px;color:blue;' url='../ocr/ocr'>OCR印刷体识别</navigator>
+  <button bindtap="start">开始录音</button>
+  <button bindtap="end">停止录音</button>
+  <button bindtap="play">播放录音</button>
+
+  <button size="mini" bindtap="sss">开始</button>
+  <button size="mini" bindtap="stt">结束</button>
+</view>
+<text>{{txt}}</text>

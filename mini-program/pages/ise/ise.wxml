@@ -1,0 +1,50 @@
+<!--pages/ise/ise.wxml-->
+<wxs module="wxs" src="./ise.wxs"></wxs>
+
+<view class="page">
+<!-- 题库轮播图 -->
+  <swiper class="bank" previous-margin="60rpx" next-margin="60rpx" bindchange='{{wxs.currentChange}}'>
+    <block wx:for="{{itemBank}}" wx:key="index">
+      <swiper-item class="center {{index===0 ? 'active' : ''}}">
+        <text class="txt">{{item.message}}</text>
+      </swiper-item>
+    </block>
+  </swiper>
+<!-- 分数模块 -->
+  <view class="score" hidden="{{!total_score}}">
+    <view class="hd-score" bindtap="{{wxs.toggle}}">
+      <text class="left-txt">得分：{{total_score}}</text>
+      <image src="../../assets/image/down.svg" mode="aspectFit" class="right-img"></image>
+    </view>
+    <view class="hidden">
+    <view class="bd-score">
+      <view style="margin-top: 10rpx;">完整度：{{integrity_score}}</view>
+      <view>流畅度：{{fluency_score}}</view>
+      <view>准确度：{{accuracy_score}}</view>
+      音节得分：
+      <view class="syll">
+        <block wx:for="{{syll_score}}" wx:key="index">
+          <view class="syll-item">
+            <text class="block">{{item.content}}</text>
+            <text class="block">{{item.score}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+    </view>
+  </view>
+<!-- 底部按钮 -->
+  <view class="btn">
+    <view class="btn-left">
+      <play-icon playType="{{lPlayType}}" bindtap="playTts"/>
+    </view>
+    <view bind:tap="tap" bind:longpress="longstart"  bind:touchend="touchend" bind:touchcancel="touchbreak"  class="record">
+      <image src="../../assets/image/record.svg"></image>
+    </view>
+    <view class="btn-right">
+      <play-icon playType="{{rPlayType}}" bindtap="playRecording"/>
+    </view>
+  </view>
+</view>
+
+

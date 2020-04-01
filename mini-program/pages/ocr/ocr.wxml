@@ -1,0 +1,4 @@
+<!--pages/ocr/ocr.wxml-->
+<!-- <camera style="width: 100%; height: 300px;"></camera> -->
+<button size="mini" bindtap="takePhoto" data-url="general">印刷体文字识别</button>
+<button size="mini" bindtap="takePhoto" data-url="handwriting">手写体文字识别</button>

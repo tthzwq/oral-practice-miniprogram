@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "语音测评",
+  "usingComponents": {
+    "play-icon": "/components/play-icon/index"
+  }
+}

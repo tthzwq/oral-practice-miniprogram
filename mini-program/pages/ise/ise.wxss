@@ -1,0 +1,104 @@
+.bank { /* 轮播图 */
+  background-color:  #FAFAFA;
+  height: 25vh;
+  border-bottom: 2rpx solid #EEE
+}
+
+.center { /* 轮播图 item */
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  opacity: 0.5;
+  padding: 20rpx;
+  box-sizing: border-box;
+  display: flex;
+}
+
+.active {/* 当前轮播图 item*/
+  background-color: white;
+  opacity: 1;
+}
+
+.txt { /* 轮播图 item内文字 */
+  font-size: 38rpx;
+  margin: auto;
+}
+.score { /* 分数模块 */
+  width: 94vw;
+  margin: 20rpx auto;
+  background-color: rgb(255, 255, 255);
+  color: #333333;
+}
+.hd-score { /* 总分 */
+  height: 80rpx;
+  padding-left: 20rpx;
+  border-bottom: 1px solid #eeeeee;
+  line-height: 80rpx;
+  font-size: 36rpx;
+  display: flex;
+  justify-content:space-between;
+}
+.right-img { /* 总分右侧图片 */
+  width: 52rpx;
+  height: 80rpx;
+  transition: all 0.5s;
+}
+.right-img-hover {
+  transform:rotate(180deg);
+}
+.block {
+  display: block;
+}
+.hidden {
+  overflow: hidden;
+}
+.bd-score { /* 分数详情 */
+  height: 0;
+  padding: 0 26rpx;
+  overflow: hidden;
+  transition: all 0.5s;
+  color: #666666;
+  transform: translateY(-60%)
+}
+.bd-score-show {
+  height: 50vh;
+  transform: translateY(0%)
+}
+.syll { /* 音节 */
+  text-align: center;
+  height: 30vh;
+}
+.syll-item {
+  display: inline-block;
+  text-align: center;
+  padding: 0 8rpx;
+}
+
+.btn { /* 按钮盒子 */
+  width: 100vw;
+  position: fixed;
+  bottom: 4vh;
+  display: flex;
+  justify-content:space-between;
+}
+.record { /* 录音按钮 */
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  padding: 10rpx;
+  border: 2rpx solid #707070;
+}
+.record image {
+  width: 100%;
+  height: 100%
+}
+.btn-left, .btn-right {
+  width: 60rpx;
+  margin: 0 15vw;
+  position: relative;
+}
+.btn-left play-icon, .btn-right play-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%)
+}
