@@ -1,45 +1,45 @@
 {
   "pages": [
     "pages/home/home",
-    "pages/category/category",
+    "pages/aiui/aiui",
     "pages/profile/profile",
     "pages/ise/ise",
     "pages/ocr/ocr",
+    "pages/tts/tts",
+    "pages/lfasr/lfasr",
     "pages/logs/logs",
     "pages/setting/setting",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/ocr/content/content"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#eeeeee",
+    "navigationBarBackgroundColor": "#F8F8F8",
     "navigationBarTitleText": "小黑口语",
     "navigationBarTextStyle": "black",
-    "backgroundColor": "#eeeeee",
+    "backgroundColor": "#F8F8F8",
     "enablePullDownRefresh": false
   },
   "tabBar": {
-    "color": "#000000",
-    "selectedColor": "#ff5777",
+    "color": "#bfbfbf",
+    "selectedColor": "#000000",
     "backgroundColor": "#eeeeee",
     "borderStyle": "black",
     "list": [
       {
         "pagePath": "pages/home/home",
-        "text": "主页",
         "iconPath": "assets/tabbar/home.png",
-        "selectedIconPath": "assets/tabbar/home_active.png"
+        "selectedIconPath": "assets/tabbar/home_select.png"
       },
       {
-        "pagePath": "pages/category/category",
-        "text": "分类",
-        "iconPath": "assets/tabbar/category.png",
-        "selectedIconPath": "assets/tabbar/category_active.png"
+        "pagePath": "pages/aiui/aiui",
+        "iconPath": "assets/tabbar/heiqiu.png",
+        "selectedIconPath": "assets/tabbar/xiaohei.png"
       },
       {
         "pagePath": "pages/profile/profile",
-        "text": "个人中心",
         "iconPath": "assets/tabbar/profile.png",
-        "selectedIconPath": "assets/tabbar/profile_active.png"
+        "selectedIconPath": "assets/tabbar/profile_select.png"
       }
     ]
   },

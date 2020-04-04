@@ -1,4 +1,4 @@
-import {baseURL, iseConfig, ocrConfig, ttsConfig} from './config.js'
+import {baseURL, iseConfig, ocrConfig, ttsConfig, AIUIconfig} from './config.js'
 import { post, get } from './promise.js'
 const Base64 = require('js-base64').Base64
 const MD5 = require('js-md5')
@@ -157,7 +157,7 @@ export function getOCR(imgFile, option = 'general') {
  * @ option.sessionId：类似于uuid的字符串防止重复 必填，
  * @ option.codec：返回音频格式 选填 可取值 mp3(默认) wav，
  * @ option.speed：语速 选填 默认0 范围 -2~2，
- * @ option.voiceType：音色 选填 默认1050英文男 1051英文女，
+ * @ option.voiceType：音色 选填 默认1050英文男 1051英文女 5情感女声，
  * @ option.volume：音量大小 选填 默认为0代表正常音量 范围 0~10，
  * @ option.region：地域列表 选填 ap-beijing ap-chengdu ap-chongqing ap-guangzhou ap-shanghai
 */
@@ -168,11 +168,73 @@ export function getTts(option) {
       // url: 'http://127.0.0.1:3000' + '/tts',
       data: option
     }).then(res => {
-      let savedFilePath = wx.env.USER_DATA_PATH +'/'+ res.SessionId.slice(-4)+'.mp3'
-      App.FileSystem.writeFileSync(savedFilePath, res.Audio, 'base64')
-      resolve(savedFilePath)
-    }).catch(err => {
-      reject(err)
-    })
+      let savedFilePath = wx.env.USER_DATA_PATH +'/tts/'+ res.SessionId.slice(-4)+'.wav'
+      App.FileSystem.writeFile({
+        filePath: savedFilePath,
+        data: res.Audio,
+        encoding: 'base64',
+        success: () => resolve(savedFilePath),
+        fail: err => reject(err)
+      })
+    }).catch(err => reject(err))
+  })
+}
+
+/** 
+ * AIUI 智能语音助手
+ * @param {String} filePath 语音或文本路径
+ * @param {String} text 文本
+*/
+export function AIUI(text) {
+  console.log(text)
+  let ts = parseInt(new Date().getTime() / 1000)
+  let config = {
+    hostUrl: AIUIconfig.url,
+    appid: AIUIconfig.appid,
+    apikey: AIUIconfig.apikey,
+    // file: filePath
+    text: text
+  }
+  function getXParamStr() {
+    let xParam = {
+      "scene": "main_box",
+      /** 用户唯一ID 32位字符串，包括英文小写字母与数字 */
+      "auth_id": "2049a1b2fdedae553bd03ce6f4820ac4",
+      /** 数据类型，可选值：text（文本），audio（音频）*/
+      // "data_type": "audio",
+      "data_type": "text",
+      // /** 结果级别 plain（精简），complete（完整）*/
+      "result_level": "complete",
+      // /** 是否清除交互历史 auto（不清除）、user（清除） */
+      // "clean_dialog_history": "auto"
+    }
+    return Base64.encode(JSON.stringify(xParam))
+  }
+  /** 相关参数JSON串经Base64编码后的字符串 */
+  function getReqHeader() {
+    let xParamStr = getXParamStr()
+    /** MD5(apikey + curTime + param)，MD5哈希计算（32位小写）*/
+    let xCheckSum = MD5(config.apikey + ts + xParamStr)
+    return {
+      'X-Appid': config.appid,
+      'X-CurTime': ts+"",
+      'X-Param': xParamStr,
+      'X-CheckSum': xCheckSum
+    }
+  }
+  function getPostBody() {
+    return App.FileSystem.readFileSync(config.file)
+  }
+  
+  let options = {
+    url: config.hostUrl,
+    headers: getReqHeader(),
+    form: wx.base64ToArrayBuffer(Base64.encode(text))
+    // form: getPostBody()
+  }
+  return post({
+    url: options.url,
+    data: options.form,
+    header: options.headers
   })
 }

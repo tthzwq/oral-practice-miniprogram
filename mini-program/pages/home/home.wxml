@@ -1,13 +1,20 @@
 <!--pages/home/home.wxml-->
-<view>
 
-  <navigator style='display:block;line-height:40px;color:blue;' url='../ise/ise'>语音测评</navigator>
-  <navigator style='display:block;line-height:40px;color:blue;' url='../ocr/ocr'>OCR印刷体识别</navigator>
-  <button bindtap="start">开始录音</button>
-  <button bindtap="end">停止录音</button>
-  <button bindtap="play">播放录音</button>
-
-  <button size="mini" bindtap="sss">开始</button>
-  <button size="mini" bindtap="stt">结束</button>
+<view class="publick_list">
+  <navigator class="publick_item" url='../ise/ise'>
+    <image class="publick_img" src="/assets/image/ise.svg"></image>
+    <text class="publick_txt">语音评测</text>
+  </navigator>
+  <navigator class="publick_item" url='../ocr/ocr'>
+    <image class="publick_img" src="/assets/image/ocr.svg"></image>
+    <text class="publick_txt">ocr识别</text>
+  </navigator>
+  <navigator class="publick_item" url='../tts/tts'>
+    <image class="publick_img" src="/assets/image/tts.svg"></image>
+    <text class="publick_txt">语音合成</text>
+  </navigator>
+  <navigator class="publick_item" url='../lfasr/lfasr'>
+    <image class="publick_img" src="/assets/image/lfasr.svg"></image>
+    <text class="publick_txt">语音转写</text>
+  </navigator>
 </view>
-<text>{{txt}}</text>

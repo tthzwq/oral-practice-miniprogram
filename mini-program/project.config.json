@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -26,7 +26,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.10.4",
 	"appid": "wx487727c97b99efc7",
-	"projectname": "miniprogram",
+	"projectname": "%E5%B0%8F%E9%BB%91%E5%8F%A3%E8%AF%AD",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
@@ -61,6 +61,20 @@
 					"id": -1,
 					"name": "pages/ise/ise",
 					"pathName": "pages/ise/ise",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/ocr/ocr",
+					"pathName": "pages/ocr/ocr",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/lfasr/lfasr",
+					"pathName": "pages/lfasr/lfasr",
 					"scene": null
 				}
 			]

@@ -1,0 +1,11 @@
+<view class="publick_btn_box">
+    <view bind:tap="tap" bind:longpress="longstart"  bind:touchend="touchend" bind:touchcancel="touchbreak"  class="publick_record">
+      <image src="/assets/image/record.svg"></image>
+    </view>
+</view>
+<view>
+  <text> Q:{{question}}</text>
+</view>
+<view>
+  <text> A:{{answer}}</text>
+</view>

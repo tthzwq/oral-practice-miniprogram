@@ -1,16 +1,57 @@
 /**app.wxss**/
-.container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
-  box-sizing: border-box;
-} 
+page {
+  background-color: #F8F8F8;
+}
 
-.page {
-  background-color: #eeeeee;
+/* list-item */
+.publick_list{
+  position: fixed;
+  top: 50%;
+  transform: translateY(-53%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.publick_item{
+  background-color: #f2f6f9;
+  width: 40vw;
+  height: 40vw;
+  margin: 30rpx;
+  text-align: center;
+  border-radius: 30%;
+  border: 2rpx solid #cccccc
+}
+
+.publick_img{
+  width: 70%;
+  height: 70%;
+  display: block;
+  margin: 8% auto 0;
+}
+
+.publick_txt{
+  font-size: 30rpx;
+  color: #333333
+}
+
+
+/* 录音按钮 */
+.publick_btn_box { /* 按钮盒子 */
   width: 100vw;
-  height: 100vh;
+  position: fixed;
+  bottom: 4vh;
+  display: flex;
+  justify-content:center;
+}
+.publick_record { /* 录音按钮 */
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  padding: 10rpx;
+  border: 2rpx solid #707070;
+}
+.publick_record image {
+  width: 100%;
+  height: 100%
 }

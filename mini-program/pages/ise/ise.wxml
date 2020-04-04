@@ -14,7 +14,7 @@
   <view class="score" hidden="{{!total_score}}">
     <view class="hd-score" bindtap="{{wxs.toggle}}">
       <text class="left-txt">得分：{{total_score}}</text>
-      <image src="../../assets/image/down.svg" mode="aspectFit" class="right-img"></image>
+      <image src="/assets/image/down.svg" mode="aspectFit" class="right-img"></image>
     </view>
     <view class="hidden">
     <view class="bd-score">
@@ -34,12 +34,12 @@
     </view>
   </view>
 <!-- 底部按钮 -->
-  <view class="btn">
+  <view class="publick_btn_box">
     <view class="btn-left">
       <play-icon playType="{{lPlayType}}" bindtap="playTts"/>
     </view>
-    <view bind:tap="tap" bind:longpress="longstart"  bind:touchend="touchend" bind:touchcancel="touchbreak"  class="record">
-      <image src="../../assets/image/record.svg"></image>
+    <view bind:tap="tap" bind:longpress="longstart"  bind:touchend="touchend" bind:touchcancel="touchbreak"  class="publick_record">
+      <image src="/assets/image/record.svg"></image>
     </view>
     <view class="btn-right">
       <play-icon playType="{{rPlayType}}" bindtap="playRecording"/>

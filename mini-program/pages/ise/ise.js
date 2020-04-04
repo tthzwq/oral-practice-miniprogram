@@ -1,10 +1,11 @@
-import { getIse, getItemBank, getTts} from '../../network/api.js'
+import { getIse, getItemBank, getTts, AIUI} from '../../network/api.js'
 const App = getApp()
 /** 全局唯一录音管理器 */
 const Recorder = App.Recorder
+/** 全局唯一的文件管理器 */
+const FileSystem = App.FileSystem
 /** 创建内部 audio 上下文 InnerAudioContext 对象 */
 const InnerAudioContext = wx.createInnerAudioContext()
-
 
 // pages/ise/ise.js
 Page({
@@ -27,8 +28,10 @@ Page({
     accuracy_score: 0,
     
   },
-  /** 切换题目时触发*/
-  swiperChange(event) {
+  swiperChange(event) { //切换题目时触发
+    if (this.data.tts) { //删除tts语音文件缓存
+      FileSystem.unlink({filePath:this.data.tts})
+    }
     this.setData({ 
       current: event.detail.current,
       tts: '',
@@ -40,41 +43,32 @@ Page({
       accuracy_score: 0,
     })
   },
-  /** 录音时间过短*/
-  tap() {
+  tap() { //短击 录音时间过短
     wx.showToast({
       title: "录音时间过短",
       icon: "none",
       duration: 500
     })
   },
-  /** 长按开始录音*/
-  longstart() {
-    // console.log("长击longtap")
+  longstart() { //长按开始录音
     wx.vibrateShort()
-    // console.log('开始录音')
     Recorder.start({
       format: "wav",
       sampleRate: 16000,
       numberOfChannels: 1
     })
   },
-  /** 录音结束*/
-  touchend() {
+  touchend() { //结束录音
     Recorder.stop()
-    // console.log('结束录音')
   },
-  /** 录音被打断*/
-  touchbreak() {
-    // console.log("录音被打断")
+  touchbreak() { //录音被打断
     wx.showToast({
       title: "录音被打断",
       icon: "none",
       duration: 500
     })
   },
-  /** 播放TTS语音*/
-  playTts() {
+  playTts() {  //播放TTS语音
     if(this.data.tts) {
       this.setData({
         lPlayType: 'playing'
@@ -105,8 +99,7 @@ Page({
       })
     })
   },
-  /** 播放录音 */
-  playRecording() {
+  playRecording() {  //播放录音 
     if(this.data.recording) {
       InnerAudioContext.stop()
       InnerAudioContext.src = this.data.recording
@@ -123,44 +116,29 @@ Page({
     }
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function () {
-    getItemBank().then(res => {
+    getItemBank().then(res => { //获取题库
       this.setData({
         itemBank: res
       })
     })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
   onReady: function () {
-    // InnerAudioContext.onPlay(() => {
-    //   console.log('开始播放')
-    // })
-    InnerAudioContext.onError((res) => {
-      // console.log('监听音频播放错误')
+    InnerAudioContext.onError((res) => { //监听音频播放错误
       console.log(res.errMsg)
       console.log(res.errCode)
     })
-    InnerAudioContext.onEnded(() => {
-      // console.log('监听音频自然播放至结束')
+    InnerAudioContext.onEnded(() => { //监听音频自然播放至结束
       this.setData({
         lPlayType: 'wait',
         rPlayType: 'wait'
       })
     })
-
     Recorder.onStop(res => { //监听结束录音
-      // console.log('监听结束录音')
       this.setData({
         recording: res.tempFilePath
       })
       getIse(this.data.itemBank[this.data.current].message, res.tempFilePath).then(res => {
-        // console.log(res)
         let syll_score = []
         res.data.read_sentence.rec_paper.read_chapter.sentence.word.forEach(item =>{
           syll_score.push({
@@ -169,61 +147,18 @@ Page({
           })
         })
         this.setData({
-          /** 总分 */
-          total_score: Math.round(res.data.read_sentence.rec_paper.read_chapter.total_score * 100) / 100,
-          /** 音节得分 */
           syll_score: syll_score,
-          /** 完整度分 */
-          integrity_score: Math.round(res.data.read_sentence.rec_paper.read_chapter.integrity_score * 100) / 100,
-          /** 流畅度分 */
+          total_score: Math.round(res.data.read_sentence.rec_paper.read_chapter.total_score * 100) / 100,
           fluency_score: Math.round(res.data.read_sentence.rec_paper.read_chapter.fluency_score * 100) / 100,
-          /** 准确度分 */
-          accuracy_score: Math.round(res.data.read_sentence.rec_paper.read_chapter.accuracy_score * 100) / 100
+          accuracy_score: Math.round(res.data.read_sentence.rec_paper.read_chapter.accuracy_score * 100) / 100,
+          integrity_score: Math.round(res.data.read_sentence.rec_paper.read_chapter.integrity_score * 100) / 100,
         })
       })
     })
-
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
   onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    if (this.data.tts) { //删除tts语音文件缓存
+      FileSystem.unlink({ filePath: this.data.tts })
+    }
   }
 })

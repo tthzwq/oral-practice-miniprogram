@@ -10,6 +10,11 @@ promisifyAll(wx, wxp)
 //app.js
 App({
   onLaunch: function () {
+    this.FileSystem.mkdir({dirPath: wx.env.USER_DATA_PATH +'/tts'})
+    // this.FileSystem.access({
+    //   path: wx.env.USER_DATA_PATH +'/tts',
+    //   complete: (res) => console.log(res)
+    // })
     // 设置 InnerAudioContext 的播放选项 全局生效 终止其他应用或微信内的音乐
     // wx.setInnerAudioOption({mixWithOther: false})
 
