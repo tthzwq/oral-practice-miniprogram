@@ -47,10 +47,6 @@
     "WechatSI": {
       "version": "0.3.3",
       "provider": "wx069ba97219f66d99"
-    },
-    "ocr-plugin": {
-      "version": "3.0.2",
-      "provider": "wx4418e3e031e551be"
     }
   },
   "style": "v2",

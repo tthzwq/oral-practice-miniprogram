@@ -22,20 +22,23 @@ Page({
   },
   longstart() { //长按开始录音
     wx.vibrateShort()
+    wx.showToast({
+      title: '录音中...',
+      image: '/assets/luoxiaohei/drink.gif',
+      duration: 999999
+    })
     manager.start()
   },
   touchend() { //结束录音
     manager.stop()
+    wx.hideToast()
   },
   touchbreak() { //录音被打断
+    wx.hideToast()
     wx.showToast({
       title: "录音被打断",
-      icon: "none",
-      duration: 500
+      image: '/assets/luoxiaohei/lei.gif'
     })
-  },
-  playTts() {  //播放TTS语音
-    
   },
   onReady: function () {
     manager.onRecognize = res => { //有新的识别内容返回，则会调用此事件
@@ -53,6 +56,13 @@ Page({
       })
       AIUI(res.result).then(resove => {
         console.log(resove)
+        if(resove.code != 0) {
+          wx.showToast({
+            title: "数据请求失败，请稍后重试",
+            image: '/assets/luoxiaohei/fail.gif'
+          })
+          return
+        }
         this.setData({
           answer: resove.data[0].intent.answer.text,
           sid: resove.sid
@@ -60,7 +70,8 @@ Page({
         let option = {
           text: resove.data[0].intent.answer.text,
           sessionId: resove.sid.substr(0, 11),
-          voiceType: 5
+          voiceType: 5,
+          speed: 2
         }
         getTts(option).then(tts => {
           this.setData({

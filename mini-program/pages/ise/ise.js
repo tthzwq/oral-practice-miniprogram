@@ -1,4 +1,4 @@
-import { getIse, getItemBank, getTts, AIUI} from '../../network/api.js'
+import { getIse, getItemBank, getTts} from '../../network/api.js'
 const App = getApp()
 /** 全局唯一录音管理器 */
 const Recorder = App.Recorder
@@ -52,6 +52,11 @@ Page({
   },
   longstart() { //长按开始录音
     wx.vibrateShort()
+    wx.showToast({
+      title: '录音中...',
+      image: '/assets/luoxiaohei/drink.gif',
+      duration: 999999
+    })
     Recorder.start({
       format: "wav",
       sampleRate: 16000,
@@ -59,13 +64,14 @@ Page({
     })
   },
   touchend() { //结束录音
+    wx.hideToast()
     Recorder.stop()
   },
   touchbreak() { //录音被打断
+    wx.hideToast()
     wx.showToast({
       title: "录音被打断",
-      icon: "none",
-      duration: 500
+      image: '/assets/luoxiaohei/lei.gif'
     })
   },
   playTts() {  //播放TTS语音
@@ -78,6 +84,11 @@ Page({
       InnerAudioContext.play()
       return
     }
+    wx.showToast({
+      title: "语音合成中...",
+      image: '/assets/luoxiaohei/loading.gif',
+      duration: 999999
+    })
     this.setData({
       lPlayType: 'loading'
     })
@@ -86,6 +97,7 @@ Page({
       sessionId: this.data.itemBank[this.data.current]._id
     }
     getTts(option).then(res => {
+      wx.hideToast()
       this.setData({
         lPlayType: 'playing',
         tts: res
@@ -94,6 +106,7 @@ Page({
       InnerAudioContext.src = res
       InnerAudioContext.play()
     }).catch(err => {
+      wx.hideToast()
       this.setData({
         lPlayType: 'wait'
       })
@@ -116,7 +129,16 @@ Page({
     }
   },
 
-  onLoad: function () {
+  onLoad: function (option) {
+    if(option.text) {
+      this.setData({
+        itemBank: [{
+          message: option.text,
+          _id: '5e79e356842d12348b006c89'
+        }]
+      })
+      return
+    }
     getItemBank().then(res => { //获取题库
       this.setData({
         itemBank: res
@@ -140,6 +162,13 @@ Page({
       })
       getIse(this.data.itemBank[this.data.current].message, res.tempFilePath).then(res => {
         let syll_score = []
+        if(res.code != 0) {
+          wx.showToast({
+            title: "数据请求失败，请稍后重试",
+            image: '/assets/luoxiaohei/fail.gif'
+          })
+          return
+        }
         res.data.read_sentence.rec_paper.read_chapter.sentence.word.forEach(item =>{
           syll_score.push({
             content: item.content,
@@ -157,6 +186,7 @@ Page({
     })
   },
   onUnload: function () {
+    wx.hideToast()
     if (this.data.tts) { //删除tts语音文件缓存
       FileSystem.unlink({ filePath: this.data.tts })
     }

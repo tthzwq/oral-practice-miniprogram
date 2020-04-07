@@ -41,7 +41,7 @@ export function request({method, url, data, header}) {
           if (response.success.statusCode != 200) {
             wx.showToast({
               title: "网络出错，稍后再试",
-              icon: "none"
+              image: '/assets/luoxiaohei/fail.gif'
             });
             return;
           }
@@ -49,7 +49,7 @@ export function request({method, url, data, header}) {
         } else {
           wx.showToast({
             title: "数据请求失败，请稍后重试",
-            icon: "none"
+            image: '/assets/luoxiaohei/fail.gif'
           });
           console.log('数据请求失败', response.fail)
           reject(response.fail);

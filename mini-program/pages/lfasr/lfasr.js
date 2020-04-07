@@ -22,8 +22,7 @@ Page({
   touchbreak() { //录音被打断
     wx.showToast({
       title: "录音被打断",
-      icon: "none",
-      duration: 500
+      image: '/assets/luoxiaohei/lei.gif'
     })
   },
   onReady: function () {

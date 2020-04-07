@@ -1,7 +1,7 @@
 <!--pages/ocr/ocr.wxml-->
 <view class="publick_list">
   <block wx:for="{{info}}" wx:key="index">
-  <view class="publick_item" bindtap="takeOCR" data-url="{{item.url}}" data-type="{{item.type}}">
+  <view class="publick_item" bindtap="takeOCR" data-url="{{item.url}}">
     <image class="publick_img" src="{{item.image}}"></image>
     <text class="publick_txt">{{item.content}}</text>
   </view>

@@ -1,3 +1,5 @@
 {
+  "navigationBarBackgroundColor": "#fcf9ee",
+  "navigationBarTitleText": "识别结果",
   "usingComponents": {}
 }

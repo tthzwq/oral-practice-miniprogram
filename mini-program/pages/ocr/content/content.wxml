@@ -1,2 +1,9 @@
-<!--pages/ocr/content/content.wxml-->
-<text>pages/ocr/content/content.wxml</text>
+<view class="btn_list">
+  <block wx:for="{{btnArr}}" wx:key="index">
+  <view class="btn_item" bind:tap="{{item.type}}">
+    <image src="{{item.url}}"></image>
+    <text>{{item.text}}</text>
+  </view>
+  </block>
+</view>
+<textarea value="{{showStr}}" auto-height maxlength='-1' adjust-position show-confirm-bar bindconfirm="down" focus="{{!disable}}"  disabled="{{disable}}"></textarea> 

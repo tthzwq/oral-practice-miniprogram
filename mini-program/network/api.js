@@ -3,6 +3,7 @@ import { post, get } from './promise.js'
 const Base64 = require('js-base64').Base64
 const MD5 = require('js-md5')
 const App = getApp()
+const FileSystem = App.FileSystem
 
 /**
  * 获取题库
@@ -67,7 +68,7 @@ export function getIse(text, path) {
     * 组装postBody
   */
   function getPostBody() {
-    let audio = App.FileSystem.readFileSync(config.file, 'base64')
+    let audio = FileSystem.readFileSync(config.file, 'base64')
     return {
       audio: audio,
       text: config.paper
@@ -88,16 +89,17 @@ export function getIse(text, path) {
 /**
  * OCR文字识别
  * @param {String} imgFile 图片路径 必填
- * @param {String} option 印刷体识别(general) 手写体识别(handwriting)
+ * @param {String} url 印刷体识别(general) 手写体识别(handwriting)
+ * @param {Object} xparam 相关业务参数
  * @returns {Promise} 返回Promise实例
 */
-export function getOCR(imgFile, option = 'general') {
+export function getOCR(imgFile, url = 'general') {
   let ts = parseInt(new Date().getTime() / 1000)
   /**
     * 系统配置
   */
   let config = {
-    hostUrl: ocrConfig.url + option,
+    hostUrl: ocrConfig.url + url,
     appid: ocrConfig.appid,
     apiKey: ocrConfig.apiKey,
     file: imgFile
@@ -110,6 +112,11 @@ export function getOCR(imgFile, option = 'general') {
     let xParam = {
       language: "cn|en",      // 语言
       // location: "true"      // 是否返回文本位置信息
+    }
+    if (url !== "general" && url !== "handwriting") {
+      xParam = {
+        engine_type: url,      // 语言
+      }
     }
     return Base64.encode(JSON.stringify(xParam))
   }
@@ -133,7 +140,7 @@ export function getOCR(imgFile, option = 'general') {
     * 组装postBody
   */
   function getPostBody() {
-    let image = App.FileSystem.readFileSync(config.file, 'base64')
+    let image = FileSystem.readFileSync(config.file, 'base64')
     return {
       image: image
     }
@@ -169,7 +176,7 @@ export function getTts(option) {
       data: option
     }).then(res => {
       let savedFilePath = wx.env.USER_DATA_PATH +'/tts/'+ res.SessionId.slice(-4)+'.wav'
-      App.FileSystem.writeFile({
+      FileSystem.writeFile({
         filePath: savedFilePath,
         data: res.Audio,
         encoding: 'base64',
@@ -204,9 +211,9 @@ export function AIUI(text) {
       // "data_type": "audio",
       "data_type": "text",
       // /** 结果级别 plain（精简），complete（完整）*/
-      "result_level": "complete",
+      // "result_level": "complete",
       // /** 是否清除交互历史 auto（不清除）、user（清除） */
-      // "clean_dialog_history": "auto"
+      // "clean_dialog_history": "user"
     }
     return Base64.encode(JSON.stringify(xParam))
   }
@@ -223,7 +230,7 @@ export function AIUI(text) {
     }
   }
   function getPostBody() {
-    return App.FileSystem.readFileSync(config.file)
+    return FileSystem.readFileSync(config.file)
   }
   
   let options = {
