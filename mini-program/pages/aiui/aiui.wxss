@@ -1,1 +1,7 @@
-/* pages/category/category.wxss */
+.recording {
+  position: fixed;
+  top: 60vh;
+  left: 50%;
+  transform: translateX(-50%);
+}
+

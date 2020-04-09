@@ -35,19 +35,27 @@ Page({
     tranStr: '',
     resBreakStr: '',
     resStr: '',
+    url: '',
+    sourceType: []
+  },
+  onLoad: function(options) {
+    this.setData({
+      url: options.url,
+      sourceType: [this.data.arr[options.index]]
+    })
   },
 
   /**
    * 监听页面初次渲染完成
    */
-  onLoad: function (options) {
+  onReady: function () {
     wx.chooseImage({
       count: 1,
-      sourceType: [this.data.arr[options.index]],
+      sourceType: this.data.sourceType,
       success: res => {
         let imagePath = res.tempFilePaths[0]
         console.log(imagePath)
-        getOCR(imagePath ,options.url).then(resovle => {
+        getOCR(imagePath ,this.data.url).then(resovle => {
           if (resovle.code != 0) {
             wx.showToast({
               title: "数据请求失败，请稍后重试",
@@ -103,9 +111,15 @@ Page({
   },
   translation: function () {
     if(this.data.tranStr) {
-      this.setData({
-        showStr: this.data.tranStr
-      })
+      if(this.data.showStr == this.data.tranStr) {
+        this.setData({
+          showStr: this.data.resStr
+        })
+      }else {
+        this.setData({
+          showStr: this.data.tranStr
+        })
+      }
       return
     }
     wx.showActionSheet({
@@ -113,7 +127,6 @@ Page({
       success: res => {
         let language = "zh_CN"
         let toLanguage = "en_US"
-        let text = this.data.resArr.join(" /****/ ")
         if(res.tapIndex == 1) {
           language = "en_US",
           toLanguage = "zh_CN"
@@ -165,11 +178,16 @@ Page({
 
   },
   down: function(event) {
-    console.log(event.detail.value)
     if(event.detail.value) {
-      wx.redirectTo({
-        url: '/pages/ise/ise?text='+ event.detail.value,
-        complete: res => console.log(res)
+      wx.setStorageSync('ise', event.detail.value)
+      wx.navigateTo({
+        url: '/pages/ise/ise?type='+ "lfasr"
+      })
+    }else {
+      wx.showToast({
+        title: "请输入内容",
+        icon: "none",
+        duration: 500
       })
     }
   }

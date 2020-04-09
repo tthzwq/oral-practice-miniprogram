@@ -1,1 +1,56 @@
-/* pages/tts/tts.wxss */
+page {
+  background-color: #fcf9ee;
+}
+
+.text_box {
+  margin: 20rpx;
+  padding: 20rpx;
+  background-color: #ffffff;
+}
+
+.text_box textarea {
+  width: 100%;
+}
+
+.section {
+  margin: 20rpx 0;
+  padding: 10rpx;
+  background-color: #ffffff;
+}
+
+.section_title {
+  font-size: 28rpx;
+  color: #999999;
+}
+
+slider {
+  margin: 10rpx 36rpx;
+}
+.spraker_group {
+  margin-top: 26rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around
+}
+
+.spraker_item {
+  padding: 10rpx;
+  width: 200rpx;
+  display: flex;
+  justify-content: space-between
+}
+
+.active {
+  background-color: #e5f7ff;
+  border: 2rpx solid #c5eeff;
+}
+
+.head {
+  width: 64rpx;
+  height: 64rpx;
+}
+.text {
+  width: 120rpx;
+  font-size: 24rpx;
+  color: #666666;
+}

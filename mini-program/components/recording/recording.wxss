@@ -1,0 +1,88 @@
+/* components/recording/recording.wxss */
+.loading .wrapper {
+  height: 100%;
+  margin: 0 auto;
+  font-size: 0;
+}
+
+.loading .wrapper .item {
+  background-color: #ff6363;
+  width: 15rpx;
+  height: 0rpx;
+  display: inline-block;
+  font-size: 0;
+  margin: 0 5rpx;
+  position: relative;
+  transform: translateY(145rpx);
+}
+
+.loading .wrapper .item::before {
+  content: '';
+  height: 50rpx;
+  width: 15rpx;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-top-left-radius: 8rpx;
+  border-top-right-radius: 8rpx;
+  background-color: #ff6363;
+}
+
+
+.loading .wrapper .item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 50rpx;
+  width: 15rpx;
+  border-bottom-left-radius: 8rpx;
+  border-bottom-right-radius: 8rpx;
+  background-color: #ff6363;
+}
+
+.loading .wrapper .item:nth-child(1)::before {
+  animation: loading 2s infinite 0s;
+}
+.loading .wrapper .item:nth-child(2)::before {
+  animation: loading 2s infinite .2s;
+}
+.loading .wrapper .item:nth-child(3)::before {
+  animation: loading 2s infinite .4s;
+}
+.loading .wrapper .item:nth-child(4)::before {
+  animation: loading 2s infinite .6s;
+}
+.loading .wrapper .item:nth-child(5)::before {
+  animation: loading 2s infinite .8s;
+}
+
+
+.loading .wrapper .item:nth-child(1)::after {
+  animation: loading 2s infinite 0s;
+}
+.loading .wrapper .item:nth-child(2)::after {
+  animation: loading 2s infinite .2s;
+}
+.loading .wrapper .item:nth-child(3)::after {
+  animation: loading 2s infinite .4s;
+}
+.loading .wrapper .item:nth-child(4)::after {
+  animation: loading 2s infinite .6s;
+}
+.loading .wrapper .item:nth-child(5)::after {
+  animation: loading 2s infinite .8s;
+}
+
+
+@keyframes loading {
+  0% {
+    height: 50rpx;
+  }
+  50% {
+    height: 5rpx;
+  }
+  100% {
+    height: 50rpx;
+  }
+}

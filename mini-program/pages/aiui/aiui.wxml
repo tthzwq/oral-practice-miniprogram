@@ -9,3 +9,8 @@
 <view>
   <text> A:{{answer}}</text>
 </view>
+
+
+
+
+<recording class="recording" hidden="{{hiddenRecord}}" ></recording>

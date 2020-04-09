@@ -61,20 +61,6 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "pages/ise/ise",
-					"pathName": "pages/ise/ise",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 1,
-					"name": "pages/ocr/content/content",
-					"pathName": "pages/ocr/content/content",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "pages/lfasr/lfasr",
 					"pathName": "pages/lfasr/lfasr",
 					"query": "",

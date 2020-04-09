@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "navigationBarBackgroundColor": "#fcf9ee",
+  "usingComponents": {
+    "recording": "/components/recording/recording"
+  },
+  "navigationBarTitleText": "语音转写"
 }

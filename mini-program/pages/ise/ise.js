@@ -16,6 +16,7 @@ Page({
     rPlayType: 'wait',
     tts: '',
     recording: '',
+    hiddenRecord: true,
     /** 总分 */
     total_score: 0,
     /** 音节得分 */
@@ -52,10 +53,8 @@ Page({
   },
   longstart() { //长按开始录音
     wx.vibrateShort()
-    wx.showToast({
-      title: '录音中...',
-      image: '/assets/luoxiaohei/drink.gif',
-      duration: 999999
+    this.setData({
+      hiddenRecord: false
     })
     Recorder.start({
       format: "wav",
@@ -64,14 +63,19 @@ Page({
     })
   },
   touchend() { //结束录音
-    wx.hideToast()
     Recorder.stop()
+    this.setData({
+      hiddenRecord: true
+    })
   },
   touchbreak() { //录音被打断
     wx.hideToast()
     wx.showToast({
       title: "录音被打断",
       image: '/assets/luoxiaohei/lei.gif'
+    })
+    this.setData({
+      hiddenRecord: true
     })
   },
   playTts() {  //播放TTS语音
@@ -107,6 +111,10 @@ Page({
       InnerAudioContext.play()
     }).catch(err => {
       wx.hideToast()
+      wx.showToast({
+        title: "语音合成失败，请稍后重试",
+        image: '/assets/luoxiaohei/fail.gif'
+      })
       this.setData({
         lPlayType: 'wait'
       })
@@ -130,12 +138,21 @@ Page({
   },
 
   onLoad: function (option) {
-    if(option.text) {
-      this.setData({
-        itemBank: [{
-          message: option.text,
-          _id: '5e79e356842d12348b006c89'
-        }]
+    if(option.type) {
+      wx.getStorage({
+        key: 'ise',
+        success: res => {
+          let arr = []
+          res.data.split("\n").forEach((item, index) => {
+            arr.push({
+              message: item,
+              _id: '5e79e356842d12348b006c8' + index
+            })
+          })
+          this.setData({
+            itemBank: arr
+          })
+        }
       })
       return
     }

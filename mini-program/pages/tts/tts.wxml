@@ -1,2 +1,38 @@
-<!--pages/tts/tts.wxml-->
-<text>pages/tts/tts.wxml</text>
+<wxs module="wxs" src="./tts.wxs"></wxs>
+
+<!-- 顶部按钮栏 -->
+<view class="publick_btn_list">
+  <block wx:for="{{btnArr}}" wx:key="index">
+  <view class="publick_btn_item" bind:tap="{{item.type}}">
+    <image class="image" src="{{item.url}}" wx:if="{{item.url}}"></image>
+    <play-icon wx:elif="{{item}}" class="image" playType="{{lPlayType}}" />
+    <text class="text">{{item.text}}</text>
+  </view>
+  </block>
+</view>
+
+<!-- 文本框 -->
+<view class="text_box">
+  <textarea value="{{showStr}}" placeholder="请输入文本" maxlength='100' adjust-position  bindblur="setStr" />
+</view>
+
+<!-- setting -->
+<view class="section"> <!-- 发音人 -->
+  <text class="section_title">发音人</text>
+  <view class="spraker_group">
+    <block wx:for="{{speaker}}" wx:key="index">
+    <view class="spraker_item {{item.checked ? 'active' : ''}}" bindtap="{{wxs.viewChange}}" data-value="{{item.value}}" >
+        <image src="{{item.image}}" class="head"></image>
+        <view class="text">{{item.name}}</view>
+    </view>
+    </block>
+  </view>
+</view>
+<view class="section"> <!-- 音量 -->
+  <text class="section_title">音量</text>
+  <slider bindchange="volumeChange" max="10" value="5" block-size="20" show-value/>
+</view>
+<view class="section"> <!-- 语速 -->
+  <text class="section_title">语速</text>
+  <slider bindchange="speedChange" min="-2" max="2" value="0" block-size="20" show-value/>
+</view>

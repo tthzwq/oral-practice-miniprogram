@@ -3,6 +3,35 @@ page {
   background-color: #F8F8F8;
 }
 
+/* 顶部按钮 */
+.publick_btn_list {
+  background-color: #fcf9ee;
+  position: sticky;
+  top: 0;
+  padding: 10rpx 30rpx 8rpx;
+  display: flex;
+  justify-content: space-around;
+  border: 2rpx solid #eeeeee;
+  z-index: 99;
+}
+
+.publick_btn_item {
+  width: 80rpx;
+  height: 94rpx;
+  text-align: center;
+}
+
+.publick_btn_item .image {
+  margin: 0 auto;
+  width: 50rpx;
+  height: 50rpx;
+  display: block;
+}
+.publick_btn_item .text {
+  font-size: 24rpx;
+}
+
+
 /* list-item */
 .publick_list{
   position: fixed;
@@ -50,6 +79,7 @@ page {
   border-radius: 50%;
   padding: 10rpx;
   border: 2rpx solid #707070;
+  position: relative;
 }
 .publick_record image {
   width: 100%;

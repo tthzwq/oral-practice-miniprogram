@@ -8,6 +8,7 @@ const manager = plugin.getRecordRecognitionManager()
 const InnerAudioContext = wx.createInnerAudioContext()
 Page({
   data: {
+    hiddenRecord: true,
     question: '',
     answer: '',
     tts: '',
@@ -22,22 +23,25 @@ Page({
   },
   longstart() { //长按开始录音
     wx.vibrateShort()
-    wx.showToast({
-      title: '录音中...',
-      image: '/assets/luoxiaohei/drink.gif',
-      duration: 999999
+    this.setData({
+      hiddenRecord: false
     })
     manager.start()
   },
   touchend() { //结束录音
     manager.stop()
-    wx.hideToast()
+    this.setData({
+      hiddenRecord: true
+    })
   },
   touchbreak() { //录音被打断
     wx.hideToast()
     wx.showToast({
       title: "录音被打断",
       image: '/assets/luoxiaohei/lei.gif'
+    })
+    this.setData({
+      hiddenRecord: true
     })
   },
   onReady: function () {
@@ -70,8 +74,7 @@ Page({
         let option = {
           text: resove.data[0].intent.answer.text,
           sessionId: resove.sid.substr(0, 11),
-          voiceType: 5,
-          speed: 2
+          voiceType: 5
         }
         getTts(option).then(tts => {
           this.setData({

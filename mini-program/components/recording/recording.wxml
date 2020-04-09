@@ -1,0 +1,10 @@
+<!--components/recording/recording.wxml-->
+<view class="loading" hidden="{{show}}">
+  <view class="wrapper">
+    <view class="item"></view>
+    <view class="item"></view>
+    <view class="item"></view>
+    <view class="item"></view>
+    <view class="item"></view>
+  </view>
+</view>

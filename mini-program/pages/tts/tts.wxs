@@ -1,0 +1,13 @@
+var viewChange = function (event, owner) {
+  var swiperItems = owner.selectAllComponents('.spraker_item')
+  var swiperItem = event.instance
+  var value = event.currentTarget.dataset.value
+  swiperItems.forEach(function (item, index, arr) {
+    item.removeClass('active')
+  }) 
+  swiperItem.addClass('active')
+  owner.callMethod('speakerChange', { value: value})
+}
+module.exports = {
+  viewChange: viewChange
+}

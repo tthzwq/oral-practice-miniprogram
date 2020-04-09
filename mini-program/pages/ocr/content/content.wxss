@@ -1,26 +1,9 @@
 page {
   background-color: #fcf9ee;
 }
-
-.btn_list {
-  padding: 10rpx 30rpx 0;
-  display: flex;
-  justify-content: space-around;
-  border: 2rpx solid #eeeeee;
+.text_box {
+  margin: 20rpx;
+  padding: 20rpx;
+  background-color: #ffffff;
 }
 
-.btn_item {
-  width: 80rpx;
-  height: 94rpx;
-  text-align: center;
-}
-
-.btn_item image {
-  margin: 0 auto;
-  width: 50rpx;
-  height: 50rpx;
-  display: block;
-}
-.btn_item text {
-  font-size: 24rpx;
-}

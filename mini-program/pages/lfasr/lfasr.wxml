@@ -1,7 +1,24 @@
 
+<!-- 顶部按钮栏 -->
+<view class="publick_btn_list">
+  <block wx:for="{{btnArr}}" wx:key="index">
+  <view class="publick_btn_item" bind:tap="{{item.type}}">
+    <image class="image" src="{{item.url}}"></image>
+    <text class="text">{{item.text}}</text>
+  </view>
+  </block>
+</view>
+
+
+<view class="text_box">
+  <textarea value="{{showStr}}" maxlength='-1' adjust-position show-confirm-bar bindconfirm="down" focus="{{!disable}}"  disabled="{{disable}}" />
+</view>
+
+
+
+<recording class="recording" hidden="{{hiddenRecord}}" ></recording>
 <view class="publick_btn_box">
     <view bind:tap="tap" bind:longpress="longstart"  bind:touchend="touchend" bind:touchcancel="touchbreak"  class="publick_record">
       <image src="/assets/image/record.svg"></image>
     </view>
 </view>
-<text>{{text}}</text>

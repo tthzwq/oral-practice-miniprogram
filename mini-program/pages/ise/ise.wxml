@@ -11,7 +11,7 @@
     </block>
   </swiper>
 <!-- 分数模块 -->
-  <view class="score" hidden="{{!total_score}}">
+  <view class="score" hidden="{{! total_score}}">
     <view class="hd-score" bindtap="{{wxs.toggle}}">
       <text class="left-txt">得分：{{total_score}}</text>
       <image src="/assets/image/down.svg" mode="aspectFit" class="right-img"></image>
@@ -33,6 +33,8 @@
     </view>
     </view>
   </view>
+
+  <recording class="recording" hidden="{{hiddenRecord}}" ></recording>
 <!-- 底部按钮 -->
   <view class="publick_btn_box">
     <view class="btn-left">

@@ -1,7 +1,10 @@
+page {
+  background-color: #ffffee;
+}
 .bank { /* 轮播图 */
-  background-color:  #FAFAFA;
+  background-color:  #fffff1;
   height: 25vh;
-  border-bottom: 2rpx solid #EEE
+  border-bottom: 2rpx solid #ffffe9
 }
 
 .center { /* 轮播图 item */
@@ -15,7 +18,7 @@
 }
 
 .active {/* 当前轮播图 item*/
-  background-color: white;
+  background-color: #fffffe;
   opacity: 1;
 }
 
@@ -26,7 +29,7 @@
 .score { /* 分数模块 */
   width: 94vw;
   margin: 20rpx auto;
-  background-color: rgb(255, 255, 255);
+  background-color: #fffffe;
   color: #333333;
 }
 .hd-score { /* 总分 */
@@ -72,6 +75,13 @@
   display: inline-block;
   text-align: center;
   padding: 0 8rpx;
+}
+
+.recording {
+  position: fixed;
+  top: 60vh;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .btn-left, .btn-right {

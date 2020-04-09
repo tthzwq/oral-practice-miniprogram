@@ -175,7 +175,8 @@ export function getTts(option) {
       // url: 'http://127.0.0.1:3000' + '/tts',
       data: option
     }).then(res => {
-      let savedFilePath = wx.env.USER_DATA_PATH +'/tts/'+ res.SessionId.slice(-4)+'.wav'
+      console.log(res)
+      let savedFilePath = wx.env.USER_DATA_PATH +'/tts/'+ res.RequestId.slice(-4)+'.wav'
       FileSystem.writeFile({
         filePath: savedFilePath,
         data: res.Audio,

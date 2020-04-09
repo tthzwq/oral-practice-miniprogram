@@ -1,6 +1,8 @@
 {
+  "navigationBarBackgroundColor": "#ffffee",
   "navigationBarTitleText": "语音测评",
   "usingComponents": {
-    "play-icon": "/components/play-icon/index"
+    "play-icon": "/components/play-icon/index",
+    "recording": "/components/recording/recording"
   }
 }

@@ -1,1 +1,18 @@
 /* pages/lfasr/lfasr.wxss */
+page {
+  background-color: #fcf9ee;
+}
+
+.text_box {
+  margin: 20rpx;
+  padding: 20rpx;
+  background-color: #ffffff;
+}
+
+
+.recording {
+  position: fixed;
+  top: 60vh;
+  left: 50%;
+  transform: translateX(-50%);
+}
