@@ -54,7 +54,6 @@ Page({
       sourceType: this.data.sourceType,
       success: res => {
         let imagePath = res.tempFilePaths[0]
-        console.log(imagePath)
         getOCR(imagePath ,this.data.url).then(resovle => {
           if (resovle.code != 0) {
             wx.showToast({
@@ -64,7 +63,6 @@ Page({
             wx.navigateBack()
             return
           }
-          console.log(resovle)
           let resArr = []
           resovle.data.block[0].line.forEach( item=> {
             resArr.push(item.word[0].content)
@@ -136,7 +134,6 @@ Page({
           lto: toLanguage,
           content: this.data.showStr,
           success: resove => {
-            console.log(resove)
             if(resove.retcode == 0) {
                 this.setData({
                   tranStr: resove.result,
@@ -150,7 +147,6 @@ Page({
             }
           },
           fail: function(err) {
-            console.log("",err)
             wx.showToast({
               title: "网络出错，稍后再试",
               image: '/assets/luoxiaohei/fail.gif'

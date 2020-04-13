@@ -1,11 +1,25 @@
 const tts = require('../api/tts.js')
-const mong = require('../api/mongoose.js')
+const mongo = require('../api/mongoose.js')
+const {getOpenid} = require('../api/login.js')
 const express = require('express')
 const router = express.Router()
 
+/** login */
+router.post('/openid', (req,res) => {
+  if (req.body.code) {
+    getOpenid(req.body.code).then(data => {
+      res.send(data.openid)
+    }).catch(err => {
+      res.send(err)
+    })
+  }else {
+    res.status(400).send('参数错误')
+  }
+})
+
 /** 获取题库 */
 router.get('/item', (req, res) => {
-  mong.findItemBank().then(data => {
+  mongo.findItemBank().then(data => {
     res.send(data)
   }).catch(err => {
     res.status(500).send('Server error')

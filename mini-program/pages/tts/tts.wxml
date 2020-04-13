@@ -5,7 +5,7 @@
   <block wx:for="{{btnArr}}" wx:key="index">
   <view class="publick_btn_item" bind:tap="{{item.type}}">
     <image class="image" src="{{item.url}}" wx:if="{{item.url}}"></image>
-    <play-icon wx:elif="{{item}}" class="image" playType="{{lPlayType}}" />
+    <play-icon wx:else class="image" playType="{{lPlayType}}" />
     <text class="text">{{item.text}}</text>
   </view>
   </block>

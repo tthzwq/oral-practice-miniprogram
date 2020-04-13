@@ -1,15 +1,55 @@
-<!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+<wxs module="wxs" src="./profile.wxs"></wxs>
+<view>
+  <view class="top">
+   <view class="center">
+    <view class="center_top">
+     <view class="center_img">
+      <image wx:if="{{userInfo.avatarUrl}}" src="{{userInfo.avatarUrl}}" class="user_head"></image>
+      <image wx:else src="/assets/head/Schoolboy.svg" class="user_head"></image>
+     </view>
+     <view class="center_info">
+      <text wx:if="{{userInfo.nickName}}" class="center_name">{{userInfo.nickName}}</text>
+      <text wx:else class="center_name"  class="center_name">请授权登录</text>
+      <text wx:if="{{userInfo.nickName}}" class="center_phone">积分余额：{{integral}}</text>
+     </view>
+    </view>
+    <view wx:if="{{userInfo.nickName}}" class="center_down">
+     <view class="center_rank" bind:tap="getIntegral">
+      <image class="rank_icon" src="/assets/image/integral.svg"></image>
+      <text class="rank_text">获取积分</text>
+     </view>
+     <view class="center_rank" bind:tap="certification">
+      <image class="rank_icon" src="/assets/image/Certification.svg"></image>
+      <text class="rank_text">身份认证</text>
+     </view>
+    </view>
+    <view wx:else class="center_down">
+      <button plain open-type="getUserInfo" bindgetuserinfo="onGotUserInfo" style="border:none;">授权登录</button>
+    </view>
+   </view>
+   <image src='https://www.tthzwq.com/public/img/wave.gif' mode='scaleToFill' class='gif-wave'></image>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+   
+   <view class="wave"></view>
+
+  <view class="cells">
+  <block wx:for="{{cells}}" wx:key="index">
+    <view class="cell" bind:touchstart="{{wxs.touchStart}}" bind:touchend="{{wxs.touchEnd}}" data-type="{{item.type}}">
+      <view class="cell_left">
+          <image src="{{item.icon}}" mode="aspectFit" class="cell_left_img"></image>
+          <text class="cell_left_txt">{{item.title}}</text>
+      </view>
+      <text class="cell_right_txt">{{item.message}}</text>
+    </view>
+  </block>
   </view>
+
+
+
+
 </view>
+
+
+
 
 

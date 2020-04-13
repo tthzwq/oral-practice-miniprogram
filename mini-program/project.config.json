@@ -65,6 +65,12 @@
 					"pathName": "pages/lfasr/lfasr",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/profile/profile",
+					"pathName": "pages/profile/profile",
+					"scene": null
 				}
 			]
 		}

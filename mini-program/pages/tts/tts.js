@@ -124,7 +124,6 @@ Page({
     })
   },
   setStr: function(even) {  /** 文本框失去焦点时触发 */
-    console.log("文本框失去焦点时触发", even)
     let str = even.detail.value.replace(/(^\s*)|(\s*$)/g, "")
     // .replace(/\s+/g, " ") //去除连续空格 回车
     this.setData({
@@ -145,7 +144,7 @@ Page({
     }
     wx.showToast({
       title: "语音合成中...",
-      image: '/assets/luoxiaohei/loading.gif',
+      image: '/assets/luoxiaohei/money.gif',
       duration: 999999
     })
     this.setData({
@@ -158,7 +157,6 @@ Page({
       voiceType: this.data.checkSpeaker,
       volume: this.data.volume
     }
-    console.log(option)
     getTts(option).then(res => {
       wx.hideToast()
       this.setData({
@@ -214,7 +212,6 @@ Page({
           lto: toLanguage,
           content: this.data.showStr,
           success: resove => {
-            console.log(resove)
             if(resove.retcode == 0) {
                 this.setData({
                   tranStr: resove.result,
@@ -228,7 +225,6 @@ Page({
             }
           },
           fail: function(err) {
-            console.log("",err)
             wx.showToast({
               title: "网络出错，稍后再试",
               image: '/assets/luoxiaohei/fail.gif'

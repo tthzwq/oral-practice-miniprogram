@@ -12,7 +12,6 @@ const FileSystem = App.FileSystem
 export function getItemBank () {
   return get({
     url: baseURL + '/item'
-    // url: 'http://127.0.0.1:3000' + '/item'
   })
 }
 
@@ -172,10 +171,8 @@ export function getTts(option) {
   return new Promise((resolve, reject) => {
     post({
       url: ttsConfig.url,
-      // url: 'http://127.0.0.1:3000' + '/tts',
       data: option
     }).then(res => {
-      console.log(res)
       let savedFilePath = wx.env.USER_DATA_PATH +'/tts/'+ res.RequestId.slice(-4)+'.wav'
       FileSystem.writeFile({
         filePath: savedFilePath,
@@ -190,11 +187,9 @@ export function getTts(option) {
 
 /** 
  * AIUI 智能语音助手
- * @param {String} filePath 语音或文本路径
  * @param {String} text 文本
 */
 export function AIUI(text) {
-  console.log(text)
   let ts = parseInt(new Date().getTime() / 1000)
   let config = {
     hostUrl: AIUIconfig.url,
@@ -207,7 +202,7 @@ export function AIUI(text) {
     let xParam = {
       "scene": "main_box",
       /** 用户唯一ID 32位字符串，包括英文小写字母与数字 */
-      "auth_id": "2049a1b2fdedae553bd03ce6f4820ac4",
+      "auth_id": "tthzoroza5m2s7amlx5pcce7jwngy3og",
       /** 数据类型，可选值：text（文本），audio（音频）*/
       // "data_type": "audio",
       "data_type": "text",

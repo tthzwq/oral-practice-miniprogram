@@ -1,3 +1,4 @@
+const App = getApp()
 const plugin = requirePlugin("WechatSI")
 /** 获取全局唯一的语音识别管理器 */
 const manager = plugin.getRecordRecognitionManager()
@@ -34,6 +35,7 @@ Page({
     })
   },
   longstart() { //长按开始录音
+    App.getRecordingAuthorize()
     wx.vibrateShort()
     this.setData({
       hiddenRecord: false
@@ -90,7 +92,6 @@ Page({
           lto: toLanguage,
           content: this.data.showStr,
           success: resove => {
-            console.log(resove)
             if(resove.retcode == 0) {
                 this.setData({
                   tranStr: resove.result,
@@ -104,7 +105,6 @@ Page({
             }
           },
           fail: function(err) {
-            console.log("",err)
             wx.showToast({
               title: "网络出错，稍后再试",
               image: '/assets/luoxiaohei/fail.gif'

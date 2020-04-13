@@ -23,8 +23,8 @@
   "tabBar": {
     "color": "#bfbfbf",
     "selectedColor": "#000000",
-    "backgroundColor": "#eeeeee",
-    "borderStyle": "black",
+    "backgroundColor": "#F8F8F8",
+    "borderStyle": "white",
     "list": [
       {
         "pagePath": "pages/home/home",

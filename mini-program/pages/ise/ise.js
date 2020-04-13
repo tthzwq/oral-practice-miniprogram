@@ -52,6 +52,7 @@ Page({
     })
   },
   longstart() { //长按开始录音
+    App.getRecordingAuthorize()
     wx.vibrateShort()
     this.setData({
       hiddenRecord: false
@@ -90,7 +91,7 @@ Page({
     }
     wx.showToast({
       title: "语音合成中...",
-      image: '/assets/luoxiaohei/loading.gif',
+      image: '/assets/luoxiaohei/money.gif',
       duration: 999999
     })
     this.setData({
