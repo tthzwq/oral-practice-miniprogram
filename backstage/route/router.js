@@ -1,9 +1,20 @@
 const tts = require('../api/tts.js')
+const sms = require('../api/sms.js')
 const mongo = require('../api/mongoose.js')
 const {getOpenid} = require('../api/login.js')
 const express = require('express')
+const path = require('path')
+const fs = require('fs')
 const router = express.Router()
 
+router.get('/', (req,res) => {
+  fs.readFile(path.join(__dirname, '../views/index.html'), 'utf8', function (err, data) {
+    if (err) {
+      res.status(500).send('Server error')
+    }
+    res.send(data)
+  })
+})
 /** login */
 router.post('/openid', (req,res) => {
   if (req.body.code) {
@@ -36,4 +47,11 @@ router.post('/tts', (req,res) => {
   })
 })
 
+router.get('/sms', (req, res) => {
+  sms(req.query.tel).then(data => {
+    res.send(data)
+  }).catch(err => {
+    res.status(500).send('Server error')
+  })
+})
 module.exports = router

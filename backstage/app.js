@@ -9,4 +9,5 @@ app.use(bodyParser.json())
 
 app.use(router)
 
-app.listen(3000, () => console.log('express running...'))
+app.listen(3000, () => console.log(`http://127.0.0.1:3000
+express running...`))

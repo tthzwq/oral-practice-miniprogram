@@ -16,6 +16,22 @@ export function getItemBank () {
 }
 
 /**
+ * 获取验证码
+ * @param {String} tel 手机号 必填
+ * @param {String} templateId 模板ID 默认578978绑定手机号  579001解绑手机号
+ * @returns {Promise} 返回Promise实例
+*/
+export function getSmsCode (tel, templateId='578978') {
+  return get({
+    url: baseURL + '/sms',
+    data: {
+      tel: tel,
+      templateId: templateId
+    }
+  })
+}
+
+/**
  * 获取测评结果
  * @param {String} text 测评文本 必填
  * @param {String} path 音频文件路径 必填
