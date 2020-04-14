@@ -2,6 +2,6 @@
 
 /backstage/node_modules/
 
-/backstage/api/*
+/backstage/api/config.js
 
 /mini-program/network/config.js
