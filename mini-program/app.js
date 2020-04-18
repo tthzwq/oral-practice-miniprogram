@@ -1,4 +1,4 @@
-import { getOpenid } from './network/login.js'
+import { getOpenid, checkOpenid } from './network/login.js'
 
 //app.js
 App({
@@ -10,7 +10,13 @@ App({
 
     wx.getStorage({
       key: 'openid',
-      success:() => {
+      success:(res) => {
+        wx.getStorage({
+          key: 'bindInfo',
+          fail: () => {
+            this.checkBind(res.data)
+          }
+        })
         wx.checkSession({
           fail:() => {
             this.login()
@@ -51,6 +57,7 @@ App({
     wx.login({
       success: res => {
         getOpenid(res.code).then(openid => {
+          this.checkBind(openid)
           wx.setStorage({
             data: openid,
             key: 'openid',
@@ -61,7 +68,21 @@ App({
       }
     })
   },
-  getRecordingAuthorize: function( ) {
+  // 获取用户绑定信息
+  checkBind: function(openid, callback) {
+    checkOpenid(openid).then(res => {
+      wx.setStorage({
+        data: res,
+        key: 'bindInfo',
+        success: ()=> {
+          if(callback) {
+            callback()
+          }
+        }
+      })
+    })
+  },
+  getRecordingAuthorize: function() {
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.record'] === false) {

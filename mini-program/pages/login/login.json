@@ -1,3 +1,10 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText": "身份认证",
+  "usingComponents": {
+    "wux-segmented-control": "/components/wux-weapp/segmented-control/index",
+    "wux-steps": "/components/wux-weapp/steps/index",
+    "wux-step": "/components/wux-weapp/step/index",
+    "wux-toptips": "/components/wux-weapp/toptips/index",
+    "mp-form": "/components/WeUI/form/form"
+  }
 }

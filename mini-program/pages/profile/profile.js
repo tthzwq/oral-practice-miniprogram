@@ -1,5 +1,7 @@
+const App = getApp()
 Page({
   data: {
+    binding: 0,
     userInfo: {},
     cells: [
       {
@@ -14,10 +16,6 @@ Page({
     wx.getStorage({
       key: 'userInfo',
       success:res => {
-        wx.setStorage({
-          data: res.data,
-          key: 'userInfo',
-        })
         this.setData({
           userInfo: res.data
         })
@@ -40,6 +38,31 @@ Page({
                 }
               })
             }
+          }
+        })
+      }
+    })
+    wx.getStorage({
+      key: 'bindInfo',
+      success: (res) => {
+        this.setData({
+          binding: res.data.bind
+        })
+      },
+      fail: () => {
+        wx.getStorage({
+          key: 'openid',
+          success: res => {
+            App.checkBind(res.data,()=> {
+              wx.getStorage({
+                key: 'bindInfo',
+                success:res=> {
+                  this.setData({
+                    binding: res.data.bind
+                  })
+                }
+              })
+            })
           }
         })
       }
@@ -71,7 +94,7 @@ Page({
     })
     this.getUserInfo()
   },
-  getUserInfo: function () {
+  getUserInfo: function () { // 获取用户头像等信息
     wx.getSetting({
       complete: (res) => {
         if (! res.authSetting['scope.userInfo']) {
@@ -144,7 +167,21 @@ Page({
     console.log("获取积分")
   },
   certification: function () { //身份认证
-    console.log("身份认证")
-
+    if(this.data.binding == 0) {
+      wx.showToast({
+        title: '数据请求中，请稍后',
+        icon: "none"
+      })
+    }
+    if(this.data.binding == false) {
+      wx.navigateTo({
+        url: '/pages/login/login'
+      })
+    }
+    if(this.data.binding == true) {
+      wx.showToast({
+        title: '已认证',
+      })
+    }
   }
 })

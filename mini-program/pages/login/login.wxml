@@ -1,1 +1,115 @@
+<wux-toptips id="wux-toptips" />
+<view>
 
+  <view class="margin_top">
+    <wux-steps current="{{ current }}">
+      <wux-step content="身份核验"></wux-step>
+      <wux-step content="绑定手机"></wux-step>
+      <wux-step content="完成"></wux-step>
+    </wux-steps>
+  </view>
+  <!-- ---------------第一步------------------ -->
+  <view class="margin_top" hidden="{{current != 0}}">
+    <wux-segmented-control theme="positive" values="{{ ['学生认证', '教师认证'] }}" bind:change="selectChange" />
+  </view>
+  <!-- 表单 -->
+<mp-form id="form" rules="{{rules}}" models="{{formData}}">
+  <!-- ---------------第一步------------------ -->
+  <view wx:if="{{current == 0}}">
+    <view class="margin_top">
+      <view class="section">
+        <view class="section_title">
+          <text>姓名：</text>
+          <text class="err">{{errData.name}}</text>
+        </view>
+        <view class="input form">
+          <input data-field="name" placeholder="请输入姓名"  maxlength="10"  bindinput="formInputChange" bindblur="formInputDown"/>
+        </view>
+      </view>
+      <view class="section" wx:if="{{formData.identity === 0}}">
+        <view class="section_title">
+          <text>学号：</text>
+          <text class="err">{{errData.studentId}}</text>
+        </view>
+        <view class="input">
+          <input data-field="studentId" placeholder="请输入学号" type="number" maxlength="10" bindinput="formInputChange" bindblur="formInputDown" />
+        </view>
+      </view>
+      <view class="section" wx:else>
+        <view class="section_title">
+          <text>teacherId：</text>
+          <text class="err">{{errData.teacherId}}</text>
+        </view>
+        <view class="input">
+          <input data-field="teacherId" placeholder="请输入teacherId" type="number" maxlength="10" bindinput="formInputChange" bindblur="formInputDown" />
+        </view>
+      </view>
+    </view>
+    <view style="margin-top: 100rpx">
+      <button type="primary" type="primary" bindtap="checkId">身份核验</button>
+    </view>
+  </view>
+  <!-- ---------------第二步------------------ -->
+  <view wx:elif="{{current == 1}}">
+    <view class="margin_top">
+      <view class="section">
+        <view class="section_title">
+          <text>手机号：</text>
+          <text class="err">{{errData.tel}}</text>
+        </view>
+        <view class="input">
+          <input data-field="tel" placeholder="请输手机号码" type="number" maxlength="11" bindinput="formInputChange" bindblur="formInputDown"/>
+        </view>
+      </view>
+      <view class="section">
+        <view class="section_title">
+          <text>验证码：</text>
+          <text class="err">{{errData.captcha}}</text>
+        </view>
+        <view class="input captcha">
+          <input data-field="captcha" disabled="{{disCaptcha}}" placeholder="请输验证码" type="number" maxlength="6" bindinput="formInputChange" bindblur="formInputDown"/>
+          <view class="{{! disCaptchaBtn ? 'captcha_btn' : 'captcha_btn disable'}}" bindtap="getCaptcha">{{! disCaptchaBtn ? '获取验证码' : '请等待'+time+'s'}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- ---------------第三步------------------ -->
+  <view wx:elif="{{current == 2}}">
+    <view class="margin_top">
+
+      <view class="section">
+        <view class="section_title">
+          <text>班级号：</text>
+          <text class="err">{{errData.classId}}</text>
+        </view>
+        <view class="input">
+          <input disabled data-field="classId" value="{{classInfo.classId}}" placeholder="请输四位数字" type="number" maxlength="4" bindinput="formInputChange" bindblur="formInputDown"/>
+        </view>
+      </view>
+
+      <view class="section">
+        <view class="section_title">
+          <text>班级验证码：</text>
+          <text class="err">{{errData.classPwd}}</text>
+        </view>
+        <view class="input">
+          <input disabled password data-field="classPwd" value="{{classInfo.classPwd}}" placeholder="请输四位数字" type="number" maxlength="4" bindinput="formInputChange" bindblur="formInputDown"/>
+        </view>
+      </view>
+
+    </view>
+    <view style="margin-top: 60rpx">
+      <button type="primary" type="primary" bindtap="formSubmit">完成</button>
+    </view>
+
+    <icon type="info" color="#bbbbbb"></icon>
+    <text></text>
+
+  </view>
+</mp-form>
+
+<view class="btn_box">
+  <button class="next" type="primary" bindtap="nextStep" wx:if="{{current != 2}}" disabled="{{disNextBtn}}">下一步</button>
+</view>
+
+</view>

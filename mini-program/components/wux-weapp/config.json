@@ -1,0 +1,13 @@
+{
+    "components": [
+        "circle",
+        "filterbar",
+        "qrcode",
+        "segmented-control",
+        "steps",
+        "toptips"
+    ],
+    "themes": {
+        "light": "white"
+    }
+}

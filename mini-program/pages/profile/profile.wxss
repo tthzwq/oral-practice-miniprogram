@@ -19,7 +19,6 @@ page {
   margin: 0 auto;
   border-radius: 10rpx;
   box-shadow: 0 4rpx 8rpx  rgba(0,0,0,0.1), 4rpx 0 8rpx  rgba(0,0,0,0.1), 0 -4rpx 8rpx  rgba(0,0,0,0.1), -4rpx 0 8rpx  rgba(0,0,0,0.1);
-
 }
 
 .center_top {

@@ -6,7 +6,6 @@ const AppSecret = '4cb31aa19a720569e1a237f33dcd5743'
  * @param {String} code  临时登录凭证 code  必填
  */
 module.exports.getOpenid = function(code) {
-  
   return new Promise((resolve, reject) => {
     let url = `https://api.weixin.qq.com/sns/jscode2session?appid=${ AppID }&secret=${ AppSecret }&js_code=${ code }&grant_type=authorization_code`
     grant_type='authorization_code'

@@ -1,6 +1,7 @@
 /**app.wxss**/
 page {
   background-color: #F8F8F8;
+  font-family: PingFang SC, Helvetica Neue, Hiragino Sans GB, Helvetica, Microsoft YaHei, Arial;
 }
 
 /* 顶部按钮 */

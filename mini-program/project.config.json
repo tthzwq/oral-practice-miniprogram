@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"preloadBackgroundData": false,
@@ -61,15 +61,9 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "pages/lfasr/lfasr",
-					"pathName": "pages/lfasr/lfasr",
+					"name": "pages/login/login",
+					"pathName": "pages/login/login",
 					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/profile/profile",
-					"pathName": "pages/profile/profile",
 					"scene": null
 				}
 			]

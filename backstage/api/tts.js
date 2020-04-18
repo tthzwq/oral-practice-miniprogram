@@ -78,7 +78,7 @@ module.exports = function tts ({text, sessionId, codec='wav', speed=0, voiceType
           reject(errMsg);
           return;
         }
-        // 请求正常返回，打印response对象
+        // 请求正常返回,response对象
         resolve(response);
     });
   })
