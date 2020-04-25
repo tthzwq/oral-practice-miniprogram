@@ -1,5 +1,6 @@
 import { $wuxToptips } from '../../components/wux-weapp/index.js'
-import { getSmsCode, checkTel, checkIdentity, register } from '../../network/login.js'
+import { getSmsCode, checkTel, checkIdentity, register, checkOpenid } from '../../network/login.js'
+const App = getApp()
 Page({
   data: {
     openid: '',
@@ -278,8 +279,22 @@ Page({
       let userInfo = this.data.formData
       userInfo.classId = this.data.classInfo.classId
       userInfo.openid = this.data.openid
-      console.log(userInfo)
-      register(userInfo)
+      register(userInfo).then(res => {
+        if(res.err_code == 0) {
+          wx.showToast({
+            title: '身份认证成功',
+          })
+          checkOpenid(this.data.openid).then(res => {
+            wx.setStorage({
+              data: res,
+              key: 'bindInfo',
+              success: ()=> {
+                wx.switchTab({url: '/pages/profile/profile'})
+              }
+            })
+          })
+        }
+      })
     })
   },
   getCaptcha: function () { // 获取验证码
@@ -349,13 +364,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.getStorage({
-      key: 'openid',
-      success:res => {
-        this.setData({
-          openid: res.data
-        })
-      }
+    this.setData({
+      openid: App.globalData.openid
     })
   },
 

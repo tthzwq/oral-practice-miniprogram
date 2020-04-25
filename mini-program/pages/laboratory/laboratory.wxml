@@ -1,0 +1,20 @@
+<!--pages/laboratory/laboratory.wxml-->
+
+<view class="publick_list">
+  <navigator class="publick_item" url='../ocr/ocr'>
+    <image class="publick_img" src="/assets/image/ocr.svg"></image>
+    <text class="publick_txt">ocr识别</text>
+  </navigator>
+  <navigator class="publick_item" url='../tts/tts'>
+    <image class="publick_img" src="/assets/image/tts.svg"></image>
+    <text class="publick_txt">语音合成</text>
+  </navigator>
+  <navigator class="publick_item" url='../lfasr/lfasr'>
+    <image class="publick_img" src="/assets/image/lfasr.svg"></image>
+    <text class="publick_txt">语音转写</text>
+  </navigator>
+  <navigator class="publick_item" url='/pages/aiui/aiui'>
+    <image class="publick_img" src="/assets/image/aiui.svg"></image>
+    <text class="publick_txt">AIUI</text>
+  </navigator>
+</view>

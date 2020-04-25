@@ -3,6 +3,7 @@ const AppID = 'wx487727c97b99efc7'
 const AppSecret = '4cb31aa19a720569e1a237f33dcd5743'
 
 /** 
+ * 获取 openid
  * @param {String} code  临时登录凭证 code  必填
  */
 module.exports.getOpenid = function(code) {

@@ -10,7 +10,7 @@
      <view class="center_info">
       <text wx:if="{{userInfo.nickName}}" class="center_name">{{userInfo.nickName}}</text>
       <text wx:else class="center_name"  class="center_name">请授权登录</text>
-      <text wx:if="{{userInfo.nickName}}" class="center_phone">积分余额：{{integral}}</text>
+      <text wx:if="{{userInfo.nickName}}" class="center_phone">积分余额：∞{{integral}}</text>
      </view>
     </view>
     <view wx:if="{{userInfo.nickName}}" class="center_down">

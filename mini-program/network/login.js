@@ -16,7 +16,7 @@ export function getOpenid (code) {
         "chennel":"miniprogram"
       }
     }).then(res => {
-      if (res.openid) {
+      if (res.err_code == 0) {
         resove(res.openid)
         return
       }
@@ -80,7 +80,7 @@ export function checkIdentity (idInfo) {
 }
 
 /**
-*  验证数据库内是否含有该学生/教师
+*  身份认证
 *  @param {Object} userInfo 身份信息 必填
 *  @returns {Promise} 返回Promise实例
 */

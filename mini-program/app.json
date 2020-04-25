@@ -1,15 +1,20 @@
 {
   "pages": [
     "pages/home/home",
+    "pages/laboratory/laboratory",
+    "pages/course/course",
+    "pages/karaoke/karaoke",
+    "pages/dubbing/dubbing",
+    "pages/sentence/sentence",
+    "pages/logs/logs",
     "pages/aiui/aiui",
     "pages/profile/profile",
     "pages/ise/ise",
-    "pages/ocr/ocr",
     "pages/tts/tts",
     "pages/lfasr/lfasr",
-    "pages/logs/logs",
     "pages/setting/setting",
     "pages/login/login",
+    "pages/ocr/ocr",
     "pages/ocr/content/content"
   ],
   "window": {
@@ -32,7 +37,7 @@
         "selectedIconPath": "assets/tabbar/home_select.png"
       },
       {
-        "pagePath": "pages/aiui/aiui",
+        "pagePath": "pages/laboratory/laboratory",
         "iconPath": "assets/tabbar/heiqiu.png",
         "selectedIconPath": "assets/tabbar/xiaohei.png"
       },

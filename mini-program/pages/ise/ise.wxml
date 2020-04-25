@@ -40,7 +40,7 @@
     <view class="btn-left">
       <play-icon playType="{{lPlayType}}" bindtap="playTts"/>
     </view>
-    <view bind:tap="tap" bind:longpress="longstart"  bind:touchend="touchend" bind:touchcancel="touchbreak"  class="publick_record">
+    <view class="publick_record" bind:tap="tap" bind:longpress="longstart"  bind:touchend="touchend" bind:touchcancel="touchbreak" >
       <image src="/assets/image/record.svg"></image>
     </view>
     <view class="btn-right">

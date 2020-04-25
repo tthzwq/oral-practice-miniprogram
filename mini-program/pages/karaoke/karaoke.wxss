@@ -1,0 +1,47 @@
+.audio {
+  width: 608rpx;
+  height: 134rpx;
+  position: relative;
+  top: 5vh;
+  left: 50%;
+  transform: translateX(-50%);
+}
+#myAudio  {
+  width: 608rpx;
+  height: 134rpx;
+  margin: 0 auto;
+}
+.text_en {
+  font-size: 28rpx;
+  font-size: #000011;
+  text-align: center;
+  margin-top: 20rpx;
+}
+.text_zh {
+  font-size: 24rpx;
+  font-size: #333333;
+  text-align: center;
+  margin-bottom: 20rpx;
+}
+.recording {
+  position: fixed;
+  top: 60vh;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.btn-left, .btn-right {
+  width: 60rpx;
+  margin: 0 15vw;
+  position: relative;
+}
+.btn-left play-icon, .btn-right play-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%)
+}
+.btn-left_img {
+  margin: 50% 0;
+  width: 60rpx;
+  height: 60rpx;
+}

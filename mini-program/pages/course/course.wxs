@@ -1,0 +1,23 @@
+var currentChange = function (event, owner) {
+  var items = owner.selectAllComponents('.navbar_item')
+  var current = event.detail.current
+  items.forEach(function (item, index, arr) {
+    item.removeClass('active')
+  }) 
+  items[current].addClass('active')
+  owner.callMethod('swiperChange', { current: current})
+}
+var changeCurrent = function (event, owner) {
+  var items = owner.selectAllComponents('.navbar_item')
+  var item = event.instance
+  var current = event.target.dataset.current
+  items.forEach(function (ite, index, arr) {
+    ite.removeClass('active')
+  }) 
+  item.addClass('active')
+  owner.callMethod('swiperChange', { current: current})
+}
+module.exports = {
+  currentChange: currentChange,
+  changeCurrent: changeCurrent
+}

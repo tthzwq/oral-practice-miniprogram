@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "play-icon": "/components/play-icon/index",
+    "recording": "/components/recording/recording",
+    "wux-circle": "/components/wux-weapp/circle/index"
+  }
+}

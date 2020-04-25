@@ -157,11 +157,17 @@ Page({
       })
       return
     }
-    getItemBank().then(res => { //获取题库
-      this.setData({
-        itemBank: res
-      })
-    })
+    if(option.name) {
+      getItemBank(option.name).then(res =>{
+        console.log(res)
+        if (res.err_code == 0) {
+          this.setData({
+            itemBank: res.data
+          })
+        }
+      }
+      )
+    }
   },
   onReady: function () {
     InnerAudioContext.onError((res) => { //监听音频播放错误
@@ -179,6 +185,7 @@ Page({
         recording: res.tempFilePath
       })
       getIse(this.data.itemBank[this.data.current].message, res.tempFilePath).then(res => {
+        console.log(res)
         let syll_score = []
         if(res.code != 0) {
           wx.showToast({

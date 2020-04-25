@@ -1,20 +1,70 @@
-<!--pages/home/home.wxml-->
+<view>
+<!-- 顶部SayHello -->
+  <view class="top" bindtap="switchTab" data-url="/pages/profile/profile">
+    <block wx:if="{{login}}">
+      <text class="say_hello">{{sayHello}}，{{bindInfo.bind ? bindInfo.data.name : userInfo.nickName}} {{bindInfo.data.identity == 1 ? '老师' : '同学'}}</text>
+    </block>
+    <block wx:else>
+      <text class="say_hello">未登录</text>
+    </block>
+    <image src="{{userInfo.avatarUrl}}"></image>
+  </view>
+<!-- 顶部轮播图 -->
+  <view class="header">
+    <swiper class="top_swiper" autoplay duration="1000" circular vertical easing-function="easeInOutCubic">
+      <swiper-item >
+        <image class="top_img" src="/assets/image/speak.png" mode="aspectFit"></image>
+      </swiper-item>
+      <swiper-item >
+        <image class="top_img" src="/assets/image/speak.png" mode="aspectFit"></image>
+      </swiper-item>
+    </swiper>
+  </view>
+<!--  -->
+  <view class="center">
+    <navigator class="center_item" url="/pages/course/course">
+      <image src="/assets/home/Course.svg"></image>
+      <text>我的课程</text>
+    </navigator>
+    <navigator class="center_item" url="/pages/karaoke/karaoke">
+      <image src="/assets/home/Karaoke.svg"></image>
+      <text>趣味K歌</text>
+    </navigator>
+    <navigator class="center_item" url="/pages/dubbing/dubbing">
+      <image src="/assets/home/Dubbing.svg"></image>
+      <text>趣味配音</text>
+    </navigator>
+  </view>
 
-<view class="publick_list">
-  <navigator class="publick_item" url='../ise/ise'>
-    <image class="publick_img" src="/assets/image/ise.svg"></image>
-    <text class="publick_txt">语音评测</text>
-  </navigator>
-  <navigator class="publick_item" url='../ocr/ocr'>
-    <image class="publick_img" src="/assets/image/ocr.svg"></image>
-    <text class="publick_txt">ocr识别</text>
-  </navigator>
-  <navigator class="publick_item" url='../tts/tts'>
-    <image class="publick_img" src="/assets/image/tts.svg"></image>
-    <text class="publick_txt">语音合成</text>
-  </navigator>
-  <navigator class="publick_item" url='../lfasr/lfasr'>
-    <image class="publick_img" src="/assets/image/lfasr.svg"></image>
-    <text class="publick_txt">语音转写</text>
-  </navigator>
+<!--  -->
+  <view class="main">
+
+    <view class="glodWords">
+      <text class="title">每日一句</text>
+      <navigator class="message" url="/pages/sentence/sentence">
+        <view class="message_title">
+          <text>Life is like a box of chocolates, you never know what you are going to get.</text>
+        </view>
+        <view class="message_message">
+          <text>生活就像一盒巧克力,你永远不知道下一个是什么。</text>
+        </view>
+        <view class="author">
+          <text>《阿甘正传》</text>
+        </view>
+      </navigator>
+    </view>
+
+    <view class="punch">
+      <view class="title">打卡记录</view>
+      <navigator url="/pages/logs/logs" class="message" >
+        <view>
+        <view class="message_title">已累计打卡 {{0}} 天</view>
+        <view class="message_message">成功路上并不拥挤</view>
+        <view class="message_message">因为坚持的人不多</view>
+        </view>
+        <image class="punch_img" src="/assets/home/Punch.svg"></image>
+      </navigator>
+    </view>
+
+  </view>
 </view>

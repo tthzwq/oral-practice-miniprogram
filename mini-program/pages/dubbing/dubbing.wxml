@@ -1,0 +1,26 @@
+<view class="video">
+  <video id="myVideo" src="{{exportPath ? exportPath : videoPath}}" controls show-fullscreen-btn="{{false}}" show-mute-btn enable-play-gesture vslide-gesture></video>
+  <view class="circle">
+    <wux-circle wx:if="{{progress != 100}}" percent="{{progress}}" size="{{60}}">{{progress + '%'}}</wux-circle>
+  </view>
+</view>
+
+<scroll-view scroll-y>
+  <block wx:for="{{text}}" wx:key="index">
+    <view class="text_en">{{item.en}}</view>
+    <view class="text_zh">{{item.zh}}</view>
+  </block>
+</scroll-view>
+  <recording class="recording" hidden="{{hiddenRecord}}" ></recording>
+<!-- 底部按钮 -->
+  <view class="publick_btn_box">
+    <view class="btn-left">
+      <image class="btn-left_img" src="/assets/image/play.svg" bindtap="playTts"></image>
+    </view>
+    <view class="publick_record" bind:tap="tap" bind:longpress="longstart"  bind:touchend="touchend" bind:touchcancel="touchbreak" >
+      <image src="/assets/image/record.svg"></image>
+    </view>
+    <view class="btn-right">
+      <play-icon playType="{{rPlayType}}" bindtap="playRecording"/>
+    </view>
+  </view>

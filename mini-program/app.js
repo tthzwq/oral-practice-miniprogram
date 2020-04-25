@@ -3,21 +3,25 @@ import { getOpenid, checkOpenid } from './network/login.js'
 //app.js
 App({
   onLaunch: function () {
+    wx.getStorage({
+      key: 'login',
+      success:(res)=> {
+        this.globalData.login = res.data
+      }
+    })
     this.FileSystem.mkdir({dirPath: wx.env.USER_DATA_PATH +'/tts'})
-
+    this.FileSystem.mkdir({dirPath: wx.env.USER_DATA_PATH +'/video'})
     // 设置 InnerAudioContext 的播放选项 全局生效 终止其他应用或微信内的音乐
     wx.setInnerAudioOption({mixWithOther: false})
 
     wx.getStorage({
       key: 'openid',
-      success:(res) => {
-        wx.getStorage({
-          key: 'bindInfo',
-          fail: () => {
-            this.checkBind(res.data)
-          }
-        })
+      success:(resove) => {
         wx.checkSession({
+          success: ()=>{
+            this.globalData.openid = resove.data
+            this.checkBind(resove.data)
+          },
           fail:() => {
             this.login()
           }
@@ -36,6 +40,8 @@ App({
           wx.getUserInfo({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
+              this.globalData.userInfo = res.userInfo
+              this.globalData.login = true
               wx.setStorage({
                 data: res.userInfo,
                 key: 'userInfo',
@@ -43,6 +49,8 @@ App({
             }
           })
         } else {
+          this.globalData.login = false
+          this.globalData.userInfo = ''
           wx.removeStorage({key:"userInfo"})
           wx.setStorage({
             key: 'login',
@@ -57,28 +65,23 @@ App({
     wx.login({
       success: res => {
         getOpenid(res.code).then(openid => {
+          this.globalData.openid = openid
           this.checkBind(openid)
           wx.setStorage({
             data: openid,
             key: 'openid',
           })
-        }).catch(err => {
-          console.log(err)
         })
       }
     })
   },
   // 获取用户绑定信息
-  checkBind: function(openid, callback) {
+  checkBind: function(openid) {
     checkOpenid(openid).then(res => {
+      this.globalData.bindInfo = res
       wx.setStorage({
         data: res,
-        key: 'bindInfo',
-        success: ()=> {
-          if(callback) {
-            callback()
-          }
-        }
+        key: 'bindInfo'
       })
     })
   },
@@ -107,8 +110,12 @@ App({
       }
     })
   },
-  // globalData: {
-  // },
+  globalData: {
+    login: false,
+    openid: '',
+    userInfo: '',
+    bindInfo: ''
+  },
   /** 全局唯一录音管理器 */
   Recorder: wx.getRecorderManager(),
   /** 全局唯一的文件管理器 */

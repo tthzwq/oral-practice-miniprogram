@@ -1,0 +1,21 @@
+<view class="audio">
+  <audio poster="{{poster}}" name="{{name}}" author="{{author}}" src="{{src}}" id="myAudio" controls></audio>
+  <block wx:for="{{text}}">
+    <view class="text_en">{{item.en}}</view>
+    <view class="text_zh">{{item.zh}}</view>
+  </block>
+</view>
+
+  <recording class="recording" hidden="{{hiddenRecord}}" ></recording>
+<!-- 底部按钮 -->
+  <view class="publick_btn_box">
+    <view class="btn-left">
+      <image class="btn-left_img" src="/assets/image/play.svg" bindtap="playTts"></image>
+    </view>
+    <view class="publick_record" bind:tap="tap" bind:longpress="longstart"  bind:touchend="touchend" bind:touchcancel="touchbreak" >
+      <image src="/assets/image/record.svg"></image>
+    </view>
+    <view class="btn-right">
+      <play-icon playType="{{rPlayType}}" bindtap="playRecording"/>
+    </view>
+  </view>

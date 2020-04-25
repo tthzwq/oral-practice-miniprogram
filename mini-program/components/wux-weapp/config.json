@@ -5,7 +5,8 @@
         "qrcode",
         "segmented-control",
         "steps",
-        "toptips"
+        "toptips",
+        "calendar"
     ],
     "themes": {
         "light": "white"

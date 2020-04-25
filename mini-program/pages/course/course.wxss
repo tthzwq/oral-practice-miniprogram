@@ -1,0 +1,51 @@
+.navbar {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid #EEEEEE;
+  height: 5vh;
+}
+.navbar_item {
+  line-height: 5vh;
+  box-sizing: border-box;
+  padding:0 10rpx;
+}
+.active {
+  color: darkorange;
+  border-bottom: 2rpx solid darkorange;
+}
+.swiper {
+  height: 95vh;
+}
+.coures {
+  height: 95vh;
+  box-sizing: border-box;
+  padding: 20rpx;
+}
+.coures_item {
+  color: white;
+  overflow: hidden;
+  background-color: white;
+  margin: 20rpx 20rpx 40rpx;
+  height: 200rpx;
+  border-radius: 10rpx;
+  box-shadow: 0 4rpx 8rpx  rgba(0,0,0,0.1), 4rpx 0 8rpx  rgba(0,0,0,0.1), 0 -4rpx 8rpx  rgba(0,0,0,0.1), -4rpx 0 8rpx  rgba(0,0,0,0.1);
+  position: relative;
+}
+.coures_item_img {
+  width: 100%;
+  height: 100%;
+}
+.coures_item_btm {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(0,0,0,0.4);
+  display: flex;
+  align-items:center;
+  justify-content: space-around;
+}
+.coures_item_icon {
+  height: 30rpx;
+  border-left: 1px solid #999999;
+}

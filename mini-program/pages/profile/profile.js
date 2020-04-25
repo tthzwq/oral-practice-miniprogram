@@ -1,7 +1,9 @@
+import { checkOpenid } from '../../network/login'
 const App = getApp()
 Page({
   data: {
-    binding: 0,
+    openid: '',
+    binding: 'loading',
     userInfo: {},
     cells: [
       {
@@ -13,64 +15,65 @@ Page({
     ]
   },
   onLoad: function () {
-    wx.getStorage({
-      key: 'userInfo',
-      success:res => {
-        this.setData({
-          userInfo: res.data
-        })
-      },
-      fail: () => {
-        wx.getSetting({
-          success: res => {
-            if (res.authSetting['scope.userInfo'] == true) {
-              // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-              wx.getUserInfo({
-                success: resove => {
-                  // 可以将 res 发送给后台解码出 unionId
-                  wx.setStorage({
-                    data: resove.userInfo,
-                    key: 'userInfo',
-                  })
-                  this.setData({
-                    userInfo: resove.userInfo
-                  })
-                }
-              })
-            }
+    this.setData({
+      openid: App.globalData.openid
+    })
+    if(App.globalData.userInfo == ''){
+      wx.getSetting({
+        success: res => {
+          if (res.authSetting['scope.userInfo'] == true) {
+            // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+            wx.getUserInfo({
+              success: resove => {
+                // 可以将 res 发送给后台解码出 unionId
+                App.globalData.userInfo = resove.userInfo
+                wx.setStorage({
+                  data: resove.userInfo,
+                  key: 'userInfo',
+                })
+                this.setData({
+                  userInfo: resove.userInfo
+                })
+              }
+            })
           }
-        })
-      }
+        }
+      })
+    }else {
+      this.setData({
+        userInfo: App.globalData.userInfo
+      })
+    }
+    this.getUserInfo()
+  },
+  onShow: function() {
+    this.setData({
+      binding: "loading"
     })
     wx.getStorage({
       key: 'bindInfo',
-      success: (res) => {
+      success:res => {
         this.setData({
           binding: res.data.bind
         })
       },
-      fail: () => {
-        wx.getStorage({
-          key: 'openid',
-          success: res => {
-            App.checkBind(res.data,()=> {
-              wx.getStorage({
-                key: 'bindInfo',
-                success:res=> {
-                  this.setData({
-                    binding: res.data.bind
-                  })
-                }
-              })
-            })
-          }
+      fail:() => {
+        checkOpenid(this.data.openid).then(res => {
+          this.setData({
+            binding: res.bind
+          })
+          wx.setStorage({
+            data: res,
+            key: 'bindInfo'
+          })
         })
       }
     })
-    this.getUserInfo()
   },
-  onGotUserInfo: function(e) {
+  onGotUserInfo: function(e) { //用户手动授权登录
     if(e.detail.userInfo) {
+      App.globalData.login = true
+      App.globalData.userInfo = e.detail.userInfo
       wx.setStorage({
         data: e.detail.userInfo,
         key: 'userInfo',
@@ -88,6 +91,8 @@ Page({
       key: 'login',
       data: false
     })
+    App.globalData.login = false
+    App.globalData.userInfo = ''
     wx.removeStorageSync("userInfo")
     this.setData({
       userInfo: {}
@@ -102,6 +107,8 @@ Page({
             key: 'login',
             data: false
           })
+          App.globalData.login = false
+          App.globalData.userInfo = ''
           wx.removeStorageSync("userInfo")
           this.setData({
             userInfo: {}
@@ -112,6 +119,8 @@ Page({
             key: 'login',
             data: false
           })
+          App.globalData.login = false
+          App.globalData.userInfo = ''
           wx.removeStorageSync("userInfo")
           wx.showModal({
             showCancel: false,
@@ -124,6 +133,8 @@ Page({
                   if (resove.authSetting['scope.userInfo'] === true) {
                     wx.getUserInfo({
                       success: data => {
+                        App.globalData.login = true
+                        App.globalData.userInfo = data.userInfo
                         wx.setStorage({
                           data: data.userInfo,
                           key: 'userInfo',
@@ -143,6 +154,8 @@ Page({
                     key: 'login',
                     data: false
                   })
+                  App.globalData.login = false
+                  App.globalData.userInfo = ''
                   wx.removeStorageSync("userInfo")
                   this.setData({
                     userInfo: {}
@@ -158,16 +171,16 @@ Page({
       },
     })
   },
-  address: function () {
+  address: function () { // GitHub地址
     wx.setClipboardData({
       data: 'https://github.com/TThz-hz/oral-practice-miniprogram',
     })
   },
-  getIntegral: function () {  //获取积分
+  getIntegral: function () {  // 获取积分
     console.log("获取积分")
   },
-  certification: function () { //身份认证
-    if(this.data.binding == 0) {
+  certification: function () { // 身份认证
+    if(this.data.binding == 'loading') {
       wx.showToast({
         title: '数据请求中，请稍后',
         icon: "none"

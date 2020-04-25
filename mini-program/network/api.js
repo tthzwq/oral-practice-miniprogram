@@ -7,12 +7,24 @@ const FileSystem = App.FileSystem
 
 /**
  * 获取题库
+ * @param {String} text 测评文本 必填
  * @returns {Promise} 返回Promise实例
 */
-export function getItemBank () {
+export function getItemBank (subjectName) {
   return get({
-    url: baseURL + '/item'
+    url: baseURL + '/item',
+    data: { subjectName }
   })
+}
+
+/**
+* 获取课程列表
+* @returns {Promise} 返回Promise实例
+*/
+export function getSubjectList () {
+ return get({
+   url: baseURL + '/subjectList'
+ })
 }
 
 

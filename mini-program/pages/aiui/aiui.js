@@ -16,13 +16,8 @@ Page({
     sid: ''
   },
   onLoad: function() {
-    wx.getStorage({
-      key: 'openid',
-      success: res => {
-        this.setData({
-          id: res.data
-        })
-      }
+    this.setData({
+      id: App.globalData.openid
     })
   },
   tap() { //短击 录音时间过短

@@ -1,0 +1,45 @@
+<wxs module="wxs" src="./course.wxs"></wxs>
+<view class="navbar">
+  <view class="navbar_item active " bindtap="{{wxs.changeCurrent}}" data-current="0">精选课程</view>
+  <view class="navbar_item" bindtap="{{wxs.changeCurrent}}" data-current="1">班级课程</view>
+</view>
+
+<block>
+  <swiper class="swiper" circular current="{{current}}" bindchange="{{wxs.currentChange}}">
+
+<!-- 精选课程 -->
+    <swiper-item>
+      <scroll-view scroll-y class="coures">
+      <block wx:for="{{list}}" wx:key="index">
+        <view class="coures_item" bindtap="navigateTo" data-name="{{item.name}}">
+          <image class="coures_item_img" src="{{item.img}}"></image>
+          <view class="coures_item_btm">
+            <view class="coures_item_title">{{item.title}}</view>
+            <view class="coures_item_icon"></view>
+            <view class="coures_item_msg">难度：{{item.level}}</view>
+          </view>
+        </view>
+      </block>
+      </scroll-view>
+    </swiper-item>
+
+<!-- 班级课程 -->
+    <swiper-item>
+      <scroll-view class="coures" scroll-y refresher-enabled>
+      <block wx:for="{{classList}}" wx:key="index">
+        <view class="coures_item" bindtap="navigateTo" data-name="{{item.name}}">
+          <image class="coures_item_img" src="{{item.img}}"></image>
+          <view class="coures_item_btm">
+            <view class="coures_item_title">{{item.title}}</view>
+            <view class="coures_item_icon"></view>
+            <view class="coures_item_msg">难度：{{item.level}}</view>
+          </view>
+        </view>
+      </block>
+
+
+      </scroll-view>
+    </swiper-item>
+
+  </swiper>
+</block>

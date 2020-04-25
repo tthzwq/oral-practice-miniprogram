@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "趣味K歌",
+  "usingComponents": {
+    "play-icon": "/components/play-icon/index",
+    "recording": "/components/recording/recording"
+  }
+}
