@@ -1,3 +1,6 @@
 <!--logs.wxml-->
 
 <wux-calendar id="wux-calendar"/>
+<view>
+  <image src=""></image>
+</view>

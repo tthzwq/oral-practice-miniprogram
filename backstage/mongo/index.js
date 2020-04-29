@@ -46,8 +46,8 @@ module.exports.findDSubjecList = function () {
   return defaultSubjec.find()
 }
 /** 查询班级课程列表 */
-module.exports.findCSubjecList = function () {
-  return classSubjec.find()
+module.exports.findCSubjecList = function (classId) {
+  return classSubjec.find({name:classId})
 }
 
 

@@ -19,11 +19,13 @@ export function getItemBank (subjectName) {
 
 /**
 * 获取课程列表
+ * @param {String} classId 班级ID 必填
 * @returns {Promise} 返回Promise实例
 */
-export function getSubjectList () {
+export function getSubjectList (classId) {
  return get({
-   url: baseURL + '/subjectList'
+   url: baseURL + '/subjectList',
+   data: { classId }
  })
 }
 

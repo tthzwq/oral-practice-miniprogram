@@ -87,7 +87,7 @@ router.get('/item', (req, res,next) => {
 })
 
 router.get('/subjectList', (req,res) => {
-  Promise.all([mongo.findDSubjecList(), mongo.findCSubjecList()]).then(list => {
+  Promise.all([mongo.findDSubjecList(), mongo.findCSubjecList(req.query.classId)]).then(list => {
     res.json({code:0,message:"success",data:list})
   }).catch(err => {
     return next(err)
@@ -153,6 +153,7 @@ router.get('/identity', (req, res,next) => {
 
 // SMS短信验证码 
 router.get('/sms', (req, res,next) => {
+  console.log(req.query.tel)
   sms(req.query.tel).then(data => {
     res.json(data)
   }).catch(err => {

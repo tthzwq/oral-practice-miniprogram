@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema({
     required: true
   },
   classId: {
-    type: Number,
+    type: String,
     default: 1234
   },
   tel: {
@@ -52,7 +52,7 @@ const studentSchema = new mongoose.Schema({
     required: true
   },
   classId: {
-    type: Number,
+    type: String,
     default: 1001
   },
   classPwd: {
@@ -70,7 +70,7 @@ const teacherSchema = new mongoose.Schema({
     required: true
   },
   classId: {
-    type: Number,
+    type: String,
     default: 1001
   },
   classPwd: {

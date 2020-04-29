@@ -1,4 +1,5 @@
 // pages/course/course.js
+const App =getApp()
 import {getSubjectList} from '../../network/api'
 Page({
   /**
@@ -44,44 +45,7 @@ Page({
         name: "0001"
       }
     ],
-    classList: [
-      {
-        img: "https://www.tthzwq.com/public/img/subject/default2.png",
-        title: "初级口语交际",
-        level: "初级",
-        name: "c0001"
-      },
-      {
-        img: "https://www.tthzwq.com/public/img/subject/default1.png",
-        title: "初级口语交际",
-        level: "初级",
-        name: "c0002"
-      },
-      {
-        img: "https://www.tthzwq.com/public/img/subject/default3.png",
-        title: "初级口语交际",
-        level: "初级",
-        name: "c0003"
-      },
-      {
-        img: "https://www.tthzwq.com/public/img/subject/default4.png",
-        title: "初级口语交际",
-        level: "初级",
-        name: "c0004"
-      },
-      {
-        img: "https://www.tthzwq.com/public/img/subject/default3.png",
-        title: "初级口语交际",
-        level: "初级",
-        name: "c0005"
-      },
-      {
-        img: "https://www.tthzwq.com/public/img/subject/default3.png",
-        title: "初级口语交际",
-        level: "初级",
-        name: "c0006"
-      }
-    ]
+    classList: []
   },
   swiperChange:function(even) {
     this.setData({
@@ -97,7 +61,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    getSubjectList().then(res => {
+    console.log(App.globalData.bindInfo)
+    getSubjectList(App.globalData.bindInfo.data.classId).then(res => {
       this.setData({
         list: res.data[0],
         classList: res.data[1]

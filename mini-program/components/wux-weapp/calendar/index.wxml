@@ -24,6 +24,7 @@
                 </view>
             </view>
             <view class="{{ classes.bd }}">
+            <view class="shadow"></view>
                 <view class="{{ classes.weekdays }}" wx:if="{{ weekHeader }}">
                     <block wx:for="{{ weeks }}" wx:key="index">
                         <view class="{{ classes.weekday }} {{ item.weekend ? prefixCls + '__weekday--weekend' : '' }}">

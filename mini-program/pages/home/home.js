@@ -5,6 +5,7 @@ Page({
   data: {
     login: false,
     sayHello: '未登录1',
+    clock: 0,
     userInfo: '',
     bindInfo: '',
     openid: ''
@@ -58,7 +59,10 @@ Page({
           success: res => {
             getOpenid(res.code).then(openid => {
               checkOpenid(openid).then(res => {
-                this.setData({bindInfo: res})
+                this.setData({
+                  clock:res.data.clock.length,
+                  bindInfo: res
+                })
                 App.globalData.bindInfo = res
                 wx.setStorage({
                   data: res,
@@ -76,7 +80,10 @@ Page({
         })
       }else {
         checkOpenid(this.data.openid).then(res => {
-          this.setData({bindInfo: res})
+          this.setData({
+            clock:res.data.clock.length,
+            bindInfo: res
+          })
           App.globalData.bindInfo = res
           wx.setStorage({
             data: res,
@@ -84,6 +91,10 @@ Page({
           })
         })
       }
+    }else {
+      this.setData({
+        clock:App.globalData.bindInfo.data.clock.length,
+      })
     }
   },
   switchTab:function() {wx.switchTab({url: '/pages/profile/profile'})},

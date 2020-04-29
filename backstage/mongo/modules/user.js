@@ -17,12 +17,15 @@ const userSchema = new mongoose.Schema({
     required: true
   },
   classId: {
-    type: Number,
+    type: String,
     default: 1324
   },
   tel: {
     type: Number,
     required: true
+  },
+  clock: {
+    type: Array
   }
 })
 

@@ -58,9 +58,9 @@ Page({
       hiddenRecord: false
     })
     Recorder.start({
-      format: "wav",
-      sampleRate: 16000,
-      numberOfChannels: 1
+      format: "wav", // 音频格式
+      sampleRate: 16000, // 采样率
+      numberOfChannels: 1 // 录音通道数
     })
   },
   touchend() { //结束录音

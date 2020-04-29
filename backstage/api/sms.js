@@ -70,21 +70,21 @@ module.exports = function sms(tel, templateId="578978") {
   
   // 通过client对象调用想要访问的接口，需要传入请求对象以及响应回调函数
   return new Promise((resove, reject) => {
-    // if(! tel) {
-    //   reject({err: "请输入手机号"})
-    //   return
-    // } 
-    // client.SendSms(req, function (err, response) {
-    //   // 请求异常返回异常信息
-    //   if (err) {
-    //     reject(err)
-    //   }else if(response.SendStatusSet[0].Code == 'Ok'){
-    //     // 请求正常返回验证码
+    if(! tel) {
+      reject({err: "请输入手机号"})
+      return
+    } 
+    client.SendSms(req, function (err, response) {
+      // 请求异常返回异常信息
+      if (err) {
+        reject(err)
+      }else if(response.SendStatusSet[0].Code == 'Ok'){
+        // 请求正常返回验证码
         resove({code:0,tel,smsCode})
-    //   }else{
-    //     resove(response)
-    //   }
-    // })
+      }else{
+        resove(response)
+      }
+    })
   })
 
 }

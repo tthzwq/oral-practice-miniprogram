@@ -10,7 +10,7 @@ const studentSchema = new mongoose.Schema({
     required: true
   },
   classId: {
-    type: Number,
+    type: String,
     default: 1001
   },
   classPwd: {

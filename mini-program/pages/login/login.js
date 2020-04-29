@@ -150,11 +150,11 @@ Page({
     //       {
     //         name: 'classId',
     //         rules: [{
-    //           maxlength: 4,
-    //           message: '请输四位数字的班级代号'
+    //           maxlength: 5,
+    //           message: '请输正确的班级代号'
     //         }, {
-    //           minlength: 4,
-    //           message: '请输四位数字的班级代号'
+    //           minlength: 5,
+    //           message: '请输正确的班级代号'
     //         }, {
     //           required: true,
     //           message: '请输入班级代号'
@@ -289,6 +289,7 @@ Page({
               data: res,
               key: 'bindInfo',
               success: ()=> {
+                App.globalData.bindInfo = res
                 wx.switchTab({url: '/pages/profile/profile'})
               }
             })

@@ -58,7 +58,7 @@
       <view class="title">打卡记录</view>
       <navigator url="/pages/logs/logs" class="message" >
         <view>
-        <view class="message_title">已累计打卡 {{0}} 天</view>
+        <view class="message_title">已累计打卡 {{clock}} 天</view>
         <view class="message_message">成功路上并不拥挤</view>
         <view class="message_message">因为坚持的人不多</view>
         </view>

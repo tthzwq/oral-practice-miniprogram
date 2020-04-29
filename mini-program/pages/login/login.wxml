@@ -83,7 +83,7 @@
           <text class="err">{{errData.classId}}</text>
         </view>
         <view class="input">
-          <input disabled data-field="classId" value="{{classInfo.classId}}" placeholder="请输四位数字" type="number" maxlength="4" bindinput="formInputChange" bindblur="formInputDown"/>
+          <input disabled data-field="classId" value="{{classInfo.classId}}" placeholder="请输班级号" maxlength="5" bindinput="formInputChange" bindblur="formInputDown"/>
         </view>
       </view>
 
@@ -93,7 +93,7 @@
           <text class="err">{{errData.classPwd}}</text>
         </view>
         <view class="input">
-          <input disabled password data-field="classPwd" value="{{classInfo.classPwd}}" placeholder="请输四位数字" type="number" maxlength="4" bindinput="formInputChange" bindblur="formInputDown"/>
+          <input disabled password data-field="classPwd" value="{{classInfo.classPwd}}" placeholder="请输班级验证码" type="number" maxlength="4" bindinput="formInputChange" bindblur="formInputDown"/>
         </view>
       </view>
 

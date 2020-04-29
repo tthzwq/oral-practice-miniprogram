@@ -40,7 +40,7 @@ Page({
     this.setData({
       hiddenRecord: false
     })
-    manager.start()
+    manager.start()  
   },
   touchend() { //结束录音
     manager.stop()
