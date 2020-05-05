@@ -1,4 +1,5 @@
 {
+  "navigationBarTitleText": "趣味配音",
   "usingComponents": {
     "play-icon": "/components/play-icon/index",
     "recording": "/components/recording/recording",

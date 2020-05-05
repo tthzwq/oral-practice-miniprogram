@@ -1,0 +1,28 @@
+.coures {
+  height: 95vh;
+  box-sizing: border-box;
+  padding: 20rpx;
+}
+.coures_item {
+  color: white;
+  overflow: hidden;
+  background-color: white;
+  margin: 20rpx 20rpx 40rpx;
+  height: 200rpx;
+  border-radius: 10rpx;
+  box-shadow: 0 4rpx 8rpx  rgba(0,0,0,0.1), 4rpx 0 8rpx  rgba(0,0,0,0.1), 0 -4rpx 8rpx  rgba(0,0,0,0.1), -4rpx 0 8rpx  rgba(0,0,0,0.1);
+  position: relative;
+}
+.coures_item_img {
+  width: 100%;
+  height: 100%;
+}
+.coures_item_btm {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(0,0,0,0.4);
+  display: flex;
+  align-items:center;
+  justify-content: space-around;
+}

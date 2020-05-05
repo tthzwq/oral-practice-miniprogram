@@ -1,6 +1,6 @@
 <view class="audio">
   <audio poster="{{poster}}" name="{{name}}" author="{{author}}" src="{{src}}" id="myAudio" controls></audio>
-  <block wx:for="{{text}}">
+  <block wx:for="{{text}}" wx:key="index">
     <view class="text_en">{{item.en}}</view>
     <view class="text_zh">{{item.zh}}</view>
   </block>

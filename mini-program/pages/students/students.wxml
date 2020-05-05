@@ -1,0 +1,31 @@
+<wxs module="wxs" src="./students.wxs"></wxs>
+
+<view class="box white">
+<block wx:for="{{option}}" wx:key="index">
+  <view class="flex">
+  <view class="item" data-type="{{item.type}}" bindtap="{{wxs.itemChange}}" data-nowtype="{{nowtype}}" data-num="{{num}}">
+    <view>{{item.title}}</view>
+  </view>
+  </view>
+</block>
+</view>
+
+<view class="index">
+  <block wx:for="{{students}}" wx:key="index">
+  <view class="box">
+    <view class="txt">
+      <text>{{item.studentId}}</text>
+    </view>
+    <view class="txt">
+      <text>{{item.name}}</text>
+    </view>
+    <view class="txt">
+      <text>{{item.log}}</text>
+    </view>
+    <view class="txt out">
+    <text>{{item.study}}%</text>
+    <progress class="in" stroke-width="20" percent="{{item.study}}" active duration="10"></progress>
+    </view>
+  </view>
+  </block>
+</view>

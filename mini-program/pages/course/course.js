@@ -7,44 +7,7 @@ Page({
    */
   data: {
     current: 0,
-    list: [
-      {
-        img: "https://www.tthzwq.com/public/img/subject/default2.png",
-        title: "初级口语交际",
-        level: "初级",
-        name: "0001"
-      },
-      {
-        img: "https://www.tthzwq.com/public/img/subject/default1.png",
-        title: "初级口语交际",
-        level: "初级",
-        name: "0001",
-      },
-      {
-        img: "https://www.tthzwq.com/public/img/subject/default3.png",
-        title: "初级口语交际",
-        level: "初级",
-        name: "0001"
-      },
-      {
-        img: "https://www.tthzwq.com/public/img/subject/default4.png",
-        title: "初级口语交际",
-        level: "初级",
-        name: "0001"
-      },
-      {
-        img: "https://www.tthzwq.com/public/img/subject/default3.png",
-        title: "初级口语交际",
-        level: "初级",
-        name: "0001"
-      },
-      {
-        img: "https://www.tthzwq.com/public/img/subject/default3.png",
-        title: "初级口语交际",
-        level: "初级",
-        name: "0001"
-      }
-    ],
+    list: [],
     classList: []
   },
   swiperChange:function(even) {
@@ -61,8 +24,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(App.globalData.bindInfo)
-    getSubjectList(App.globalData.bindInfo.data.classId).then(res => {
+    let classID = 'null'
+    if (App.globalData.bindInfo.bind) {
+      classID = App.globalData.bindInfo.data.classId
+    }
+    getSubjectList(classID).then(res => {
       this.setData({
         list: res.data[0],
         classList: res.data[1]

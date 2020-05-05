@@ -1,6 +1,28 @@
 <!--logs.wxml-->
 
 <wux-calendar id="wux-calendar"/>
-<view>
-  <image src=""></image>
+
+
+
+    <view class="center_top">
+<view class="center_left">
+     <view class="center_img">
+      <image wx:if="{{userInfo.avatarUrl}}" src="{{userInfo.avatarUrl}}" class="user_head"></image>
+      <image wx:else src="/assets/head/Schoolboy.svg" class="user_head"></image>
+     </view>
+
+     <view class="center_info">
+      <text wx:if="{{ ! bindInfo.bind }}" class="center_name"  class="center_name">未认证</text>
+      <text wx:elif="{{! userInfo.nickName}}" class="center_name">未登录</text>
+      <text wx:else class="center_name"  class="center_name">{{userInfo.nickName}}</text>
+      <text class="center_init">累计签到</text>
+     </view>
 </view>
+
+      <view class="center_btm">
+        <text class="day">{{clock}}</text>
+        <text>天</text>
+      </view>
+
+    </view>
+

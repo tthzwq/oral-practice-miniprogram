@@ -1,7 +1,6 @@
 {
     "components": [
         "circle",
-        "filterbar",
         "qrcode",
         "segmented-control",
         "steps",

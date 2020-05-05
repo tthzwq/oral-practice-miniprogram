@@ -138,7 +138,6 @@ Page({
     })
     
     this.MediaContainer = wx.createMediaContainer() //  音视频处理容器
-    console.log(this.MediaContainer.addTrack)
   },
   tap() { //短击 录音时间过短
     wx.showToast({

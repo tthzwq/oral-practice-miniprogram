@@ -279,6 +279,9 @@ Page({
       let userInfo = this.data.formData
       userInfo.classId = this.data.classInfo.classId
       userInfo.openid = this.data.openid
+      if (App.globalData.userInfo) {
+        userInfo.userInfo = App.globalData.userInfo
+      }
       register(userInfo).then(res => {
         if(res.err_code == 0) {
           wx.showToast({

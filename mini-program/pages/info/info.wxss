@@ -1,0 +1,63 @@
+
+.back_img {
+  position: fixed;
+  width: 40rpx;
+  height: 40rpx;
+  top: 5vh;
+  left: 4vw;
+}
+.img {
+  width: 100vw;
+  height: 23vh;
+  background: #4de2bd url("https://www.tthzwq.com/public/img/info_bg.jpg") no-repeat;
+  background-size: 100% 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.center_img {
+  width: 132rpx;
+  height: 132rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255,0.5);
+}
+
+.user_head {
+  border: 10rpx solid rgba(255, 255, 255,0.3);
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.center_info {
+  margin-top: 20rpx;
+  color: white;
+}
+
+.list {
+  background-color: white;
+  width: 95%;
+  border: 2rpx solid #eeeeee;
+  border-radius: 20rpx;
+  margin: 20rpx auto;
+  box-shadow: 0 4rpx 8rpx  #f0f3f0, 4rpx 0 8rpx  #f0f3f0, 0 -4rpx 8rpx  #f0f3f0, -4rpx 0 8rpx  #f0f3f0;
+}
+
+.item {
+  margin: 20rpx 40rpx;
+  padding: 10rpx;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #eeeeee;
+}
+.item:last-child {
+  border-bottom: none;
+}
+
+.txt_right {
+  color: #666666;
+}

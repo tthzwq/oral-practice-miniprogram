@@ -1,0 +1,30 @@
+var itemChange = function (event, owner) {
+  var list = owner.selectAllComponents('.item')
+  var item = event.instance
+  
+  list.forEach(function (aaa, index, arr) {
+    aaa.removeClass('active_top')
+    aaa.removeClass('active_bottom')
+  })
+
+  var type = event.currentTarget.dataset.type
+  var nowtype = event.currentTarget.dataset.nowtype
+  var num = event.currentTarget.dataset.num
+  if(nowtype == type) {
+    if (num == 0) {
+      num = 1
+      item.addClass('active_bottom')
+    }else if (num == 1) {
+      num = 0
+      item.addClass('active_top')
+    }
+  }else {
+    num = 0
+    item.addClass('active_top')
+  }
+  owner.callMethod('itemChange', {num: num,type: type})
+}
+
+module.exports = {
+  itemChange: itemChange
+}

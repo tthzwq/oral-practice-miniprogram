@@ -9,9 +9,7 @@ export function getOpenid (code) {
   return new Promise((resove, reject) => {
     post({
       url: baseURL + '/openid',
-      data: {
-        code: code
-      },
+      data: { code },
       header: {
         "chennel":"miniprogram"
       }
@@ -89,4 +87,28 @@ export function register (userInfo) {
    url: baseURL + '/register',
    data: userInfo
  })
+}
+
+/**
+*  每日打卡
+*  @param {String} openid openid
+*  @returns {Promise} 返回Promise实例
+*/
+export function punch (openid) {
+  return get({
+    url: baseURL + '/punch',
+    data: {openid}
+  })
+}
+
+/**
+*  查看班级内的学生
+*  @param {String} classId 班级ID
+*  @returns {Promise} 返回Promise实例
+*/
+export function findStudent (classId) {
+  return get({
+    url: baseURL + '/findStudent',
+    data: {classId}
+  })
 }

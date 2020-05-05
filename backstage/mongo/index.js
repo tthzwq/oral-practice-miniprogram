@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const {mongoConfig} = require('../api/config.js')
+const { formatDate } = require('../Utils.js')
 // 连接 MongoDB 数据库
 mongoose.connect(mongoConfig.url, mongoConfig.option)
 mongoose.connection.on('error', console.error.bind(console, '连接数据库失败 error:'))
@@ -57,4 +58,48 @@ module.exports.findCSubjecList = function (classId) {
 */
 module.exports.addItemBank = function (data) {
   return new itemBank(data).save()
+}
+
+
+/**
+ * 每日打卡
+ * @param {String} openid openid
+*/
+module.exports.addClock = function (openid) {
+  return new Promise((resove, reject) => {
+    user.findOne({openid}).then(res => {
+      const day = (formatDate(new Date()))
+      const clock = res.clock
+      if (res.clock[clock.length - 1] == day) {
+        resove(res)
+      }else {
+        clock.push(day)
+        user.updateOne({openid}, {clock}).then(data => {
+          // data : { n: 1, nModified: 1, ok: 1 }
+          resove(res)
+        }).catch(error => {
+          reject(error)
+        })
+      }
+    }).catch(err => {
+      reject(err)
+    })
+  })
+}
+
+/**
+ * 查看班级内的学生
+ * @param {String} classId 班级ID
+*/
+module.exports.findStudent = function (classId) {
+  console.log(classId)
+  return new Promise((resove, reject) => {
+    Promise.all([student.find({classId}), user.find({classId,identity:0})]).then(list => {
+      resove(list)
+      console.log(list)
+    }).catch(err => {
+      console.log(err)
+      reject(err)
+    })
+  })
 }

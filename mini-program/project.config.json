@@ -61,36 +61,9 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "pages/login/login",
-					"pathName": "pages/login/login",
+					"name": "pages/info/info",
+					"pathName": "pages/info/info",
 					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/logs/logs",
-					"pathName": "pages/logs/logs",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/course/course",
-					"pathName": "pages/course/course",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/karaoke/karaoke",
-					"pathName": "pages/karaoke/karaoke",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/dubbing/dubbing",
-					"pathName": "pages/dubbing/dubbing",
 					"scene": null
 				}
 			]

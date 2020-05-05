@@ -1,1 +1,39 @@
-/* pages/sentence/sentence.wxss */
+.list {
+  width: 100vw;
+  height: 100vh;
+}
+
+.item {
+  width: 100%;
+  height: 100%;
+}
+.img {
+  width: 100%;
+  height: 100%;
+}
+
+.info {
+  position: fixed;
+  width: 100vw;
+  height: 29vh;
+  bottom: 0;
+  left: 0;
+  color: white;
+  box-sizing: border-box;
+  padding: 10rpx;
+}
+
+.date {
+  color: #00b176;
+}
+.day {
+  font-size: 110rpx;
+  margin: 0 20rpx;
+}
+.zh {
+  margin-top: 20rpx;
+}
+.author {
+  text-align: right;
+  margin: 0 10rpx;
+}

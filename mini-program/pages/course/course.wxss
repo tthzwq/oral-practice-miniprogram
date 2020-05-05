@@ -45,7 +45,3 @@
   align-items:center;
   justify-content: space-around;
 }
-.coures_item_icon {
-  height: 30rpx;
-  border-left: 1px solid #999999;
-}

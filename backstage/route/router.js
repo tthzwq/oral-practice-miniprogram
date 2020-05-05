@@ -66,6 +66,9 @@ router.post('/register', (req, res,next) => {
   }else if (req.body.identity == 1){
     userInfo.teacherId = req.body.teacherId
   }
+  if (req.body.userInfo) {
+    userInfo.userInfo = req.body.userInfo
+  }
   mongo.userRegister(userInfo).then(() => {
     res.json({err_code: 0, message: "success"})
   }).catch((err)=> {
@@ -87,11 +90,15 @@ router.get('/item', (req, res,next) => {
 })
 
 router.get('/subjectList', (req,res) => {
-  Promise.all([mongo.findDSubjecList(), mongo.findCSubjecList(req.query.classId)]).then(list => {
-    res.json({code:0,message:"success",data:list})
-  }).catch(err => {
-    return next(err)
-  })
+  if (req.query.classId) {
+    Promise.all([mongo.findDSubjecList(), mongo.findCSubjecList(req.query.classId)]).then(list => {
+      res.json({code:0,message:"success",data:list})
+    }).catch(err => {
+      return next(err)
+    })
+  }else {
+    res.status(400).json({err_code:400, message:"参数错误"})
+  }
 })
 
 // tts语音合成 
@@ -153,11 +160,37 @@ router.get('/identity', (req, res,next) => {
 
 // SMS短信验证码 
 router.get('/sms', (req, res,next) => {
-  console.log(req.query.tel)
   sms(req.query.tel).then(data => {
     res.json(data)
   }).catch(err => {
     return next(err)
   })
+})
+
+// 每日打卡
+router.get('/punch', (req, res,next) => {
+  if (req.query.openid) {
+    mongo.addClock(req.query.openid).then(data => {
+      res.json({code: 0, data})
+    }).catch(err => {
+      return next(err)
+    })
+  }else {
+    res.status(400).json({err_code:400, message:"参数错误"})
+  }
+})
+
+// 查看班级内的学生
+router.get('/findStudent', (req, res,next) => {
+  console.log(req.query)
+  if (req.query.classId) {
+    mongo.findStudent(req.query.classId).then(data => {
+      res.json({code: 0, data})
+    }).catch(err => {
+      return next(err)
+    })
+  }else {
+    res.status(400).json({err_code:400, message:"参数错误"})
+  }
 })
 module.exports = router

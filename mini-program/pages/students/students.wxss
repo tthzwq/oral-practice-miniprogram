@@ -1,0 +1,71 @@
+.box {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid #eee;
+}
+.white {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  background-color: white;
+}
+.flex {
+  height: 42rpx;
+  margin: 9rpx 0;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  border-right: 1px solid #999;
+}
+.flex:last-child {
+  border-right: none;
+}
+.item {
+  height: 42rpx;
+  position: relative;
+  padding-right: 20rpx;
+  line-height: 42rpx;
+}
+.item::after, .item::before{
+  content: "";
+  position: absolute;
+  border-left: 6rpx solid transparent;
+  border-right: 6rpx solid transparent;
+  width: 0px;
+  height: 0px;
+  right: 0;
+}
+.item::before{
+  top: 5rpx;
+  border-bottom: 16rpx solid #999;
+}
+.item::after {
+  bottom: 5rpx;
+  border-top: 16rpx solid #999;
+}
+.active_top::before, .active_top::after{
+  border-bottom-color: red;
+}
+.active_bottom::before, .active_bottom::after{
+  border-top-color: red;
+}
+
+.txt {
+  height: 42rpx;
+  color: #444;
+  padding: 10rpx 0;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  border-right: 1px solid #eeeeee;
+  font-size: 28rpx;
+  line-height: 42rpx;
+}
+.out {
+  position: relative;
+}
+.in {
+  position: absolute;
+  z-index: -1;
+  width: 80%;
+}

@@ -114,12 +114,11 @@ page {
 
 /* --------- cell --------- */
 .cells {
-  width: 90%;
+  width: 95%;
   background: white;
   margin: 40rpx auto 0;
   border-radius: 10rpx;
-  box-shadow: 0 4rpx 8rpx  rgba(0,0,0,0.1), 4rpx 0 8rpx  rgba(0,0,0,0.1), 0 -4rpx 8rpx  rgba(0,0,0,0.1), -4rpx 0 8rpx  rgba(0,0,0,0.1);
-
+  box-shadow: 0 4rpx 8rpx  #f0f3f0, 4rpx 0 8rpx  #f0f3f0, 0 -4rpx 8rpx  #f0f3f0, -4rpx 0 8rpx  #f0f3f0;
 }
 .active {
   background-color: #ececec;

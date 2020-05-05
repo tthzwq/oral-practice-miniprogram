@@ -1,8 +1,11 @@
 <view>
 <!-- 顶部SayHello -->
   <view class="top" bindtap="switchTab" data-url="/pages/profile/profile">
-    <block wx:if="{{login}}">
-      <text class="say_hello">{{sayHello}}，{{bindInfo.bind ? bindInfo.data.name : userInfo.nickName}} {{bindInfo.data.identity == 1 ? '老师' : '同学'}}</text>
+    <block wx:if="{{bindInfo.bind}}">
+      <text class="say_hello">{{sayHello}}，{{bindInfo.data.name}} {{bindInfo.data.identity == 1 ? '老师' : '同学'}}</text>
+    </block>
+    <block wx:elif="{{login}}">
+      <text class="say_hello">{{sayHello}}，{{userInfo.nickName}}</text>
     </block>
     <block wx:else>
       <text class="say_hello">未登录</text>
@@ -24,7 +27,7 @@
   <view class="center">
     <navigator class="center_item" url="/pages/course/course">
       <image src="/assets/home/Course.svg"></image>
-      <text>我的课程</text>
+      <text>精选课程</text>
     </navigator>
     <navigator class="center_item" url="/pages/karaoke/karaoke">
       <image src="/assets/home/Karaoke.svg"></image>

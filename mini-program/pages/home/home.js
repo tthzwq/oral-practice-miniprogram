@@ -59,8 +59,12 @@ Page({
           success: res => {
             getOpenid(res.code).then(openid => {
               checkOpenid(openid).then(res => {
+                if(res.bind) {
+                  this.setData({
+                    clock:res.data.clock.length
+                  })
+                }
                 this.setData({
-                  clock:res.data.clock.length,
                   bindInfo: res
                 })
                 App.globalData.bindInfo = res
@@ -80,8 +84,12 @@ Page({
         })
       }else {
         checkOpenid(this.data.openid).then(res => {
+          if(res.bind) {
+            this.setData({
+              clock:res.data.clock.length
+            })
+          }
           this.setData({
-            clock:res.data.clock.length,
             bindInfo: res
           })
           App.globalData.bindInfo = res
@@ -91,7 +99,7 @@ Page({
           })
         })
       }
-    }else {
+    }else if (App.globalData.bindInfo.bind) {
       this.setData({
         clock:App.globalData.bindInfo.data.clock.length,
       })

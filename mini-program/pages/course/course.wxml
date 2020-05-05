@@ -15,7 +15,6 @@
           <image class="coures_item_img" src="{{item.img}}"></image>
           <view class="coures_item_btm">
             <view class="coures_item_title">{{item.title}}</view>
-            <view class="coures_item_icon"></view>
             <view class="coures_item_msg">难度：{{item.level}}</view>
           </view>
         </view>
@@ -31,13 +30,10 @@
           <image class="coures_item_img" src="{{item.img}}"></image>
           <view class="coures_item_btm">
             <view class="coures_item_title">{{item.title}}</view>
-            <view class="coures_item_icon"></view>
             <view class="coures_item_msg">难度：{{item.level}}</view>
           </view>
         </view>
       </block>
-
-
       </scroll-view>
     </swiper-item>
 

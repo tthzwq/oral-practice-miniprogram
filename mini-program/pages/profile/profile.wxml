@@ -32,7 +32,7 @@
    
    <view class="wave"></view>
 
-  <view class="cells">
+  <view class="cells" wx:if="{{binding}}">
   <block wx:for="{{cells}}" wx:key="index">
     <view class="cell" bind:touchstart="{{wxs.touchStart}}" bind:touchend="{{wxs.touchEnd}}" data-type="{{item.type}}">
       <view class="cell_left">
@@ -43,9 +43,30 @@
     </view>
   </block>
   </view>
+  
+  <view class="cells" wx:if="{{bindInfo.data.identity == 1}}">
+  <block wx:for="{{students}}" wx:key="index">
+    <view class="cell" bind:touchstart="{{wxs.touchStart}}" bind:touchend="{{wxs.touchEnd}}" data-type="{{item.type}}">
+      <view class="cell_left">
+          <image src="{{item.icon}}" mode="aspectFit" class="cell_left_img"></image>
+          <text class="cell_left_txt">{{item.title}}</text>
+      </view>
+      <text class="cell_right_txt">{{item.message}}</text>
+    </view>
+  </block>
+  </view>
 
-
-
+  <view class="cells" >
+  <block wx:for="{{github}}" wx:key="index">
+    <view class="cell" bind:touchstart="{{wxs.touchStart}}" bind:touchend="{{wxs.touchEnd}}" data-type="{{item.type}}">
+      <view class="cell_left">
+          <image src="{{item.icon}}" mode="aspectFit" class="cell_left_img"></image>
+          <text class="cell_left_txt">{{item.title}}</text>
+      </view>
+      <text class="cell_right_txt">{{item.message}}</text>
+    </view>
+  </block>
+  </view>
 
 </view>
 

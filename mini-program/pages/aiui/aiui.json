@@ -1,4 +1,5 @@
 {
+  "navigationBarTitleText": "AIUI",
   "usingComponents": {
     "recording": "/components/recording/recording"
   }

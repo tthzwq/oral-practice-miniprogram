@@ -25,7 +25,11 @@ const userSchema = new mongoose.Schema({
     required: true
   },
   clock: {
-    type: Array
+    type: Array,
+    default: []
+  },
+  userInfo: {
+    type: Object
   }
 })
 

@@ -1,2 +1,22 @@
-<!--pages/sentence/sentence.wxml-->
-<text>pages/sentence/sentence.wxml</text>
+<swiper class="list" current="{{6}}">
+<block wx:for="{{wordList}}" wx:key="index">
+  <swiper-item class="item">
+    <image class="img" src="{{item.img}}" mode="aspectFill"></image>
+
+    <view class="info">
+
+      <view class="date">
+        <text class="day">{{item.day}}</text>
+        <text class="year">{{item.date}}</text>
+      </view>
+
+      <view class="en">{{item.en}}</view>
+      <view class="zh">{{item.zh}}</view>
+
+      <view class="author">{{item.author}}</view>
+
+    </view>
+
+  </swiper-item>
+</block>
+</swiper>

@@ -1,0 +1,7 @@
+{
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTitleText": "学生信息",
+  "usingComponents": {
+    "wux-circle": "/components/wux-weapp/circle/index"
+  }
+}

@@ -4,13 +4,34 @@ Page({
   data: {
     openid: '',
     binding: 'loading',
+    bindInfo: {},
     userInfo: {},
+    github: [{
+      icon: '/assets/image/github.svg',
+      title: 'GitHub',
+      message: '源码地址',
+      type: 'address'
+    }],
     cells: [
       {
-        icon: '/assets/image/github.svg',
-        title: 'GitHub',
-        message: '源码地址',
-        type: 'address'
+        icon: '/assets/image/info.svg',
+        title: '个人信息',
+        message: '',
+        type: 'info'
+      },
+      {
+        icon: '/assets/image/class.svg',
+        title: '班级任务',
+        message: '',
+        type: 'class'
+      },
+    ],
+    students: [
+      {
+        icon: '/assets/image/students.svg',
+        title: '学生信息',
+        message: '学生学习进度',
+        type: 'student'
       }
     ]
   },
@@ -54,13 +75,15 @@ Page({
       key: 'bindInfo',
       success:res => {
         this.setData({
-          binding: res.data.bind
+          binding: res.data.bind,
+          bindInfo: res.data
         })
       },
       fail:() => {
         checkOpenid(this.data.openid).then(res => {
           this.setData({
-            binding: res.bind
+            binding: res.bind,
+            bindInfo: res.data
           })
           wx.setStorage({
             data: res,
@@ -174,6 +197,21 @@ Page({
   address: function () { // GitHub地址
     wx.setClipboardData({
       data: 'https://github.com/TThz-hz/oral-practice-miniprogram',
+    })
+  },
+  info: function() { // 个人信息
+    wx.navigateTo({
+      url: '/pages/info/info',
+    })
+  },
+  class: function() { // 班级任务
+    wx.navigateTo({
+      url: '/pages/task/task?classId=' + this.data.bindInfo.data.classId,
+    })
+  },
+  student: function() { // 学生学习进度
+    wx.navigateTo({
+      url: '/pages/students/students?classId='+this.data.bindInfo.data.classId,
     })
   },
   getIntegral: function () {  // 获取积分

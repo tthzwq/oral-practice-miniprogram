@@ -1,0 +1,38 @@
+
+<image src="/assets/image/back_img.svg" class="back_img" bindtap="navBack"></image>
+<view class="img">
+  <view class="center_left">
+      <view class="center_img">
+        <image wx:if="{{userInfo.avatarUrl}}" src="{{userInfo.avatarUrl}}" class="user_head"></image>
+        <image wx:else src="/assets/head/Schoolboy.svg" class="user_head"></image>
+      </view>
+      <view class="center_info">
+        <text wx:if="{{userInfo.nickName}}" class="center_name">{{userInfo.nickName}}</text>
+        <text wx:else class="center_name"  class="center_name">未登录</text>
+      </view>
+  </view>
+
+</view>
+
+<view class="list">
+  <view class="item">
+    <text class="txt_left">姓名</text>
+    <text class="txt_right">{{bindInfo.data.name}}</text>
+  </view>
+  <view class="item" wx:if="{{bindInfo.data.studentId}}">
+    <text class="txt_left">学号</text>
+    <text class="txt_right">{{bindInfo.data.studentId}}</text>
+  </view>
+  <view class="item" wx:elif="{{bindInfo.data.teacherId}}">
+    <text class="txt_left">teacherId</text>
+    <text class="txt_right">{{bindInfo.data.teacherId}}</text>
+  </view>
+  <view class="item">
+    <text class="txt_left">班级</text>
+    <text class="txt_right">{{bindInfo.data.classId}}</text>
+  </view>
+  <view class="item">
+    <text class="txt_left">手机号</text>
+    <text class="txt_right">{{bindInfo.data.tel}}</text>
+  </view>
+</view>
