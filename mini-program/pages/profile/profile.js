@@ -6,23 +6,25 @@ Page({
     binding: 'loading',
     bindInfo: {},
     userInfo: {},
-    github: [{
-      icon: '/assets/image/github.svg',
-      title: 'GitHub',
-      message: '源码地址',
-      type: 'address'
-    }],
+    github: [
+      {
+        icon: '/assets/image/github.svg',
+        title: 'GitHub',
+        message: '源码地址',
+        type: 'address'
+      }
+    ],
     cells: [
       {
         icon: '/assets/image/info.svg',
         title: '个人信息',
-        message: '',
+        message: '查看认证信息',
         type: 'info'
       },
       {
         icon: '/assets/image/class.svg',
         title: '班级任务',
-        message: '',
+        message: '查看班级课程',
         type: 'class'
       },
     ],

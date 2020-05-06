@@ -69,3 +69,11 @@
   z-index: -1;
   width: 80%;
 }
+
+.bind {
+  color: #8bc34a;
+}
+
+.none {
+  color: #f88061;
+}

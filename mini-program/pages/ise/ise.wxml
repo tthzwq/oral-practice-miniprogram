@@ -3,13 +3,17 @@
 
 <view class="page">
 <!-- 题库轮播图 -->
-  <swiper class="bank" previous-margin="60rpx" next-margin="60rpx" bindchange='{{wxs.currentChange}}'>
+<view class="bank">
+  <swiper bindchange='{{wxs.currentChange}}'>
     <block wx:for="{{itemBank}}" wx:key="index">
       <swiper-item class="center {{index===0 ? 'active' : ''}}">
         <text class="txt">{{item.message}}</text>
       </swiper-item>
     </block>
   </swiper>
+  <image class="bank_left" src="/assets/image/swiper.svg"></image>
+  <image class="bank_right" src="/assets/image/swiper.svg"></image>
+</view>
 <!-- 分数模块 -->
   <view class="score" hidden="{{! total_score}}">
     <view class="hd-score" bindtap="{{wxs.toggle}}">
@@ -21,15 +25,26 @@
       <view style="margin-top: 10rpx;">完整度：{{integrity_score}}</view>
       <view>流畅度：{{fluency_score}}</view>
       <view>准确度：{{accuracy_score}}</view>
+      <view>翻译：{{translation}}</view>
+      <!-- 音节得分 -->
       音节得分：
-      <view class="syll">
-        <block wx:for="{{syll_score}}" wx:key="index">
-          <view class="syll-item">
-            <text class="block">{{item.content}}</text>
-            <text class="block">{{item.score}}</text>
+      <scroll-view class="syll" scroll-y>
+        <view class="table">
+          <view class="tr bg-w">
+            <view class="th">单词</view>
+            <view class="th">音节</view>
+            <view class="th ">得分</view>
           </view>
-        </block>
-      </view>
+          <block wx:for="{{syll_score}}" wx:key="index">
+            <view class="tr bg-g">
+              <view class="td">{{item.content}}</view>
+              <view class="td">{{item.syll_content}}</view>
+              <view class="td">{{item.score}}</view>
+            </view>
+          </block>
+        </view>
+      </scroll-view>
+
     </view>
     </view>
   </view>

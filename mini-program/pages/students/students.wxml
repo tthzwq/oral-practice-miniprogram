@@ -23,8 +23,14 @@
       <text>{{item.log}}</text>
     </view>
     <view class="txt out">
-    <text>{{item.study}}%</text>
-    <progress class="in" stroke-width="20" percent="{{item.study}}" active duration="10"></progress>
+      <block wx:if="{{item.status}}">
+        <text class="bind">已认证</text>
+      </block>
+      <block wx:else>
+        <text class="none">未认证</text>
+      </block>
+      <!-- <text>{{item.study}}%</text> -->
+      <!-- <progress class="in" stroke-width="20" percent="{{item.study}}" active duration="10"></progress> -->
     </view>
   </view>
   </block>

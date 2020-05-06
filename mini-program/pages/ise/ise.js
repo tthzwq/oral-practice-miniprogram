@@ -1,4 +1,5 @@
 import { getIse, getItemBank, getTts} from '../../network/api.js'
+const plugin = requirePlugin("WechatSI")
 const App = getApp()
 /** 全局唯一录音管理器 */
 const Recorder = App.Recorder
@@ -19,6 +20,7 @@ Page({
     hiddenRecord: true,
     /** 总分 */
     total_score: 0,
+    /** 音节 */
     /** 音节得分 */
     syll_score: [],
     /** 完整度分 */
@@ -27,7 +29,13 @@ Page({
     fluency_score: 0,
     /** 准确度分 */
     accuracy_score: 0,
-    
+    /** 翻译 */
+    translation: '',
+    /** 讯飞音标 */
+    ifly: ["aa", "ae", "ah", "ao", "ar", "aw", "ax", "ay", "eh", "er", "ey", "ih", "ir", "iy", "oo", "ow", "oy", "uh", "uw", "ur", "b", "ch", "d", "dh", "f", "g", "hh", "jh", "k", "l", "m", "n", "ng", "p", "r", "s", "sh", "t", "th", "v", "w", "y", "z", "zh", "dr", "dz", "tr", "ts"],
+    /** 国际音标 */
+    international: ["ɑː", "æ", "ʌ", "ɔː", "eə", "aʊ", "ə", "aɪ", "e", "ɜː", "eɪ", "ɪ", "ɪə", "iː", "ɒ", "əʊ", "ɒɪ", "ʊ", "uː", "ʊə", "b", "tʃ", "d", "ð", "f", "g", "h", "dʒ", "k", "l", "m", "n", "ŋ", "p", "r", "s", "ʃ", "t", "θ", "v", "w", "j", "z", "ʒ", "dr", "dz", "tr", "ts"]
+
   },
   swiperChange(event) { //切换题目时触发
     if (this.data.tts) { //删除tts语音文件缓存
@@ -42,6 +50,7 @@ Page({
       integrity_score: 0,
       fluency_score: 0,
       accuracy_score: 0,
+      translation: '',
     })
   },
   tap() { //短击 录音时间过短
@@ -195,10 +204,35 @@ Page({
           return
         }
         res.data.read_sentence.rec_paper.read_chapter.sentence.word.forEach(item =>{
-          syll_score.push({
-            content: item.content,
-            score: Math.round(item.total_score * 100) / 100
-          })
+          if (item.content != "sil" && item.content != "silv" && item.content != "fil") {
+            let arr = { content: item.content }
+            if (item.syll) {
+              arr.score = Math.round(item.total_score * 100) / 100
+              arr.syll_content = ''
+              if (typeof(item.syll.length) == "number") {
+                item.syll.forEach(ele => {
+                  ele.phone.forEach(elem => {
+                    let index = this.data.ifly.indexOf(elem.content)
+                    arr.syll_content += " " + this.data.international[index]
+                  })
+                })
+              }else {
+                if (typeof(item.syll.phone.length) == "number") {
+                  item.syll.phone.forEach(elemrnt => {
+                    let index = this.data.ifly.indexOf(elemrnt.content)
+                    arr.syll_content += " " + this.data.international[index]
+                  })
+                }else {
+                  let index = this.data.ifly.indexOf(item.syll.phone.content)
+                  arr.syll_content += " " + this.data.international[index]
+                }
+              }
+            }else {
+              arr.syll_content = ''
+              arr.score = 0
+            }
+            syll_score.push(arr)
+          }
         })
         this.setData({
           syll_score: syll_score,
@@ -207,6 +241,29 @@ Page({
           accuracy_score: Math.round(res.data.read_sentence.rec_paper.read_chapter.accuracy_score * 100) / 100,
           integrity_score: Math.round(res.data.read_sentence.rec_paper.read_chapter.integrity_score * 100) / 100,
         })
+      })
+      plugin.translate({ // 翻译
+        lfrom: "en_US",
+        lto: "zh_CN",
+        content: this.data.itemBank[this.data.current].message,
+        success: resove => {
+          if(resove.retcode == 0) {
+              this.setData({
+                translation: resove.result,
+              })
+          } else {
+            wx.showToast({
+              title: "数据请求失败，请稍后重试",
+              image: '/assets/luoxiaohei/fail.gif'
+            })
+          }
+        },
+        fail: function(err) {
+          wx.showToast({
+            title: "网络出错，稍后再试",
+            image: '/assets/luoxiaohei/fail.gif'
+          })
+        }
       })
     })
   },

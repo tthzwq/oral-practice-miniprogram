@@ -21,6 +21,11 @@ Page({
     })
   },
 
+  navigateTo: function(e) {
+    wx.navigateTo({
+      url: "/pages/ise/ise?name="+ e.currentTarget.dataset.name
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

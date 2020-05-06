@@ -268,6 +268,11 @@ Page({
             disNextBtn: false
           })
         }
+        if (res.code == 2) {
+          $wuxToptips().warn({
+            text: '该账户已被注册，如有疑问请联系管理员'
+          })
+        }
       })
     })
   },

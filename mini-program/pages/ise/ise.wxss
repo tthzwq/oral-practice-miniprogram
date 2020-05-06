@@ -1,10 +1,36 @@
 page {
-  background-color: #ffffee;
+  background-color: #f8f8f8;
 }
+
+
 .bank { /* 轮播图 */
-  background-color:  #fffff1;
+  background-color:  #f8f8f8;
+  box-shadow: 0 4rpx 8rpx  #f0f3f0, 4rpx 0 8rpx  #f0f3f0, 0 -4rpx 8rpx  #f0f3f0, -4rpx 0 8rpx  #f0f3f0;
   height: 25vh;
-  border-bottom: 2rpx solid #ffffe9
+  margin: 40rpx auto 0;
+  width: 85vw;
+  border-bottom: 2rpx solid #eeeeee;
+  position: relative;
+}
+swiper {
+  width: 100%;
+  height: 100%;
+}
+.bank_left {
+  position: absolute;
+  left: -48rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40rpx;
+  height: 40rpx;
+}
+.bank_right {
+  position: absolute;
+  right: -48rpx;
+  top: 50%;
+  transform: translateY(-50%) rotate(180deg);
+  width: 40rpx;
+  height: 40rpx;
 }
 
 .center { /* 轮播图 item */
@@ -31,6 +57,7 @@ page {
   margin: 20rpx auto;
   background-color: #fffffe;
   color: #333333;
+  box-shadow: 0 4rpx 8rpx  #f0f3f0, 4rpx 0 8rpx  #f0f3f0, 0 -4rpx 8rpx  #f0f3f0, -4rpx 0 8rpx  #f0f3f0;
 }
 .hd-score { /* 总分 */
   height: 80rpx;
@@ -64,17 +91,12 @@ page {
   transform: translateY(-60%)
 }
 .bd-score-show {
-  height: 50vh;
+  height: 48vh;
   transform: translateY(0%)
 }
 .syll { /* 音节 */
   text-align: center;
-  height: 30vh;
-}
-.syll-item {
-  display: inline-block;
-  text-align: center;
-  padding: 0 8rpx;
+  height: 28vh;
 }
 
 .recording {
@@ -93,4 +115,36 @@ page {
   position: absolute;
   top: 50%;
   transform: translateY(-50%)
+}
+
+/* table */
+.table {
+  border: 0px solid darkgray;
+}
+.tr {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  height: 60rpx;
+  align-items: center;
+}
+.td {
+    width:40%;
+    justify-content: center;
+    text-align: center;
+}
+.bg-w{
+  background: snow;
+}
+.bg-g{
+  background: #E6F3F9;
+}
+.th {
+  width: 100%;
+  justify-content: center;
+  background: #5780fd;
+  color: #fff;
+  display: flex;
+  height: 70rpx;
+  align-items: center;
 }

@@ -11,7 +11,7 @@ Page({
     userInfo: '',
     clock: 0,
     value2: [],
-    logs: ['2020-05-04']
+    logs: []
   },
   onLoad: function () {
     if (! App.globalData.bindInfo.bind) {

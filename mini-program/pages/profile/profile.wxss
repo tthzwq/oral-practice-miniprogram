@@ -118,6 +118,7 @@ page {
   background: white;
   margin: 40rpx auto 0;
   border-radius: 10rpx;
+  overflow: hidden;
   box-shadow: 0 4rpx 8rpx  #f0f3f0, 4rpx 0 8rpx  #f0f3f0, 0 -4rpx 8rpx  #f0f3f0, -4rpx 0 8rpx  #f0f3f0;
 }
 .active {
@@ -134,6 +135,18 @@ page {
   justify-content: space-between;
   border-bottom: 1rpx solid rgba(0,0,0,0.1);
   border-collapse:collapse;
+}
+
+.button:not([size='mini']) {
+  border-radius: 0;
+  font-size: 32rpx;
+  font-weight: normal;
+  background-color: white;
+  width: 100%;
+}
+.button::after {
+  border: none;
+  border-radius: 0;
 }
 
 .cell_left {

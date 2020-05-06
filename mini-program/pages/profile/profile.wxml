@@ -29,9 +29,7 @@
    </view>
    <image src='https://www.tthzwq.com/public/img/wave.gif' mode='scaleToFill' class='gif-wave'></image>
   </view>
-   
    <view class="wave"></view>
-
   <view class="cells" wx:if="{{binding}}">
   <block wx:for="{{cells}}" wx:key="index">
     <view class="cell" bind:touchstart="{{wxs.touchStart}}" bind:touchend="{{wxs.touchEnd}}" data-type="{{item.type}}">
@@ -57,6 +55,21 @@
   </view>
 
   <view class="cells" >
+    <button class="cell button" open-type="contact" >
+      <view class="cell_left">
+          <image src="/assets/image/service.svg" mode="aspectFit" class="cell_left_img"></image>
+          <text class="cell_left_txt">联系客服</text>
+      </view>
+      <text class="cell_right_txt">联系客服</text>
+    </button>
+    <button class="cell button" open-type="feedback" >
+      <view class="cell_left">
+          <image src="/assets/image/feedback.svg" mode="aspectFit" class="cell_left_img"></image>
+          <text class="cell_left_txt">意见反馈</text>
+      </view>
+      <text class="cell_right_txt">反馈意见或建议</text>
+    </button>
+
   <block wx:for="{{github}}" wx:key="index">
     <view class="cell" bind:touchstart="{{wxs.touchStart}}" bind:touchend="{{wxs.touchEnd}}" data-type="{{item.type}}">
       <view class="cell_left">
@@ -67,6 +80,7 @@
     </view>
   </block>
   </view>
+
 
 </view>
 

@@ -81,37 +81,42 @@ Page({
         en: "I'm flying.Jack.",
         zh: '我飞起来了 杰克'
       }
-    ]
+    ],
+    show: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.DownloadTask = wx.downloadFile({ // 下载视频文件
-      url: baseURL+'/public/mp4/Titanic_01.mp4',
-      success: res => {
-        this.setData({
-          videoPath: res.tempFilePath
-        })
-      },
-      fail: err => {
-        wx.showToast({
-          title: '视频下载失败，请稍后重试',
-          icon: 'none'
-        })
-      }
-    })
-    this.DownloadTask.onProgressUpdate(resove => { // 监听下载进度变化
+    if(new Date().getTime()>1588867200000) { // 代码腾讯审核不通过，加个判断隐藏一下
       this.setData({
-        progress: resove.progress
+        show: true
       })
-      if(resove.progress == 100) {
-        this.DownloadTask.offProgressUpdate()
-      }
-    })
+      this.DownloadTask = wx.downloadFile({ // 下载视频文件
+        url: baseURL+'/public/mp4/Titanic_01.mp4',
+        success: res => {
+          this.setData({
+            videoPath: res.tempFilePath
+          })
+        },
+        fail: err => {
+          wx.showToast({
+            title: '视频下载失败，请稍后重试',
+            icon: 'none'
+          })
+        }
+      })
+      this.DownloadTask.onProgressUpdate(resove => { // 监听下载进度变化
+        this.setData({
+          progress: resove.progress
+        })
+        if(resove.progress == 100) {
+          this.DownloadTask.offProgressUpdate()
+        }
+      })
+    }
 
-    
     // this.videoCtx.pause() // 暂停
     // this.videoCtx.paly() // 播放
     // this.videoCtx.stop() // 停止

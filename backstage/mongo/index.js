@@ -13,6 +13,14 @@ const student = require("./modules/student")
 const teacher = require("./modules/teacher")
 const {defaultSubjec, classSubjec} = require("./modules/subject")
 
+/**
+ * 查找已认证用户
+ * @param {object} object 查寻条件
+ */
+module.exports.findUser = function (object) {
+  return user.findOne(object)
+}
+
 /** 检查是否含有该学生 */
 module.exports.checkStudent = function (studentInfo) {
   return student.findOne(studentInfo)
@@ -21,16 +29,6 @@ module.exports.checkStudent = function (studentInfo) {
 /** 检查是否含有该教师 */
 module.exports.checkTeacher = function (teacherInfo) {
   return teacher.findOne(teacherInfo)
-}
-
-/** 检查该用户是否认证 */
-module.exports.checkOpenid = function (openid) {
-  return user.findOne({openid})
-}
-
-/** 检查该手机号是否占用 */
-module.exports.checkTel = function (tel) {
-  return user.findOne({tel})
 }
 
 /** 用户认证 */

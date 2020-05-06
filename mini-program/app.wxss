@@ -71,7 +71,7 @@ page {
 .publick_btn_box { /* 按钮盒子 */
   width: 100vw;
   position: fixed;
-  bottom: 4vh;
+  bottom: 3vh;
   display: flex;
   justify-content:center;
 }

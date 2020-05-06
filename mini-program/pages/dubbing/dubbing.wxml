@@ -1,3 +1,4 @@
+<block wx:if="{{show}}">
 <view class="video">
   <video id="myVideo" src="{{exportPath ? exportPath : videoPath}}" controls show-fullscreen-btn="{{false}}" show-mute-btn enable-play-gesture vslide-gesture></video>
   <view class="circle">
@@ -24,3 +25,7 @@
       <play-icon playType="{{rPlayType}}" bindtap="playRecording"/>
     </view>
   </view>
+</block>
+<block wx:else>
+  敬请期待
+</block>

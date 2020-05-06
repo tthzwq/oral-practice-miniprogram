@@ -40,7 +40,7 @@ router.post('/openid', (req,res,next) => {
 // 检查用户是否认证 
 router.get('/openid', (req,res,next) => {
   if (req.query.openid) {
-    mongo.checkOpenid(req.query.openid).then(data => {
+    mongo.findUser({openid: req.query.openid}).then(data => {
       if(! data) {
         res.json({bind: false})
       }else {
@@ -112,7 +112,7 @@ router.post('/tts', (req,res,next) => {
 
 // 验证手机号是否被使用 
 router.get('/tel', (req, res,next) => {
-  mongo.checkTel(req.query.tel).then(data => {
+  mongo.findUser({tel:req.query.tel}).then(data => {
     if (data == null) {
       res.json({status: 0})
     }else {
@@ -130,28 +130,44 @@ router.get('/identity', (req, res,next) => {
       name: req.query.name,
       studentId: req.query.studentId
     }
-    mongo.checkStudent(studentInfo).then(data => {
-      if(data == null) {
-        res.json({code: 0})
+    mongo.findUser(studentInfo).then(resove => {
+      if (resove == null) {
+        mongo.checkStudent(studentInfo).then(data => {
+          if(data == null) {
+            res.json({code: 0, message: "请输入数据错误或未录入"})
+          }else {
+            res.json({code: 1,message:"success",data})
+          }
+        }).catch(err => {
+          return next(err)
+        })
       }else {
-        res.json({code: 1,data})
+        res.json({code: 2, message:"该账户已被注册"})
       }
     }).catch(err => {
-      return next(err)
+        return next(err)
     })
   }else if (req.query.identity == '1') {
     let teacherInfo = {
       name: req.query.name,
       teacherId: req.query.teacherId
     }
-    mongo.checkTeacher(teacherInfo).then(data => {
-      if(data == null) {
-        res.json({code: 0})
+    mongo.findUser(teacherInfo).then(resove => {
+      if (resove == null) {
+        mongo.checkTeacher(teacherInfo).then(data => {
+          if(data == null) {
+            res.json({code: 0})
+          }else {
+            res.json({code: 1,data})
+          }
+        }).catch(err => {
+          return next(err)
+        })
       }else {
-        res.json({code: 1,data})
+        res.json({code: 2, message:"该账户已被注册"})
       }
     }).catch(err => {
-      return next(err)
+        return next(err)
     })
   }else {
     res.status(400).json({err_code:400, message:"参数错误"})
