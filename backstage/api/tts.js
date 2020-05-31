@@ -9,7 +9,7 @@ const HttpProfile = tencentcloud.common.HttpProfile;
 
 /**
  * TTS语音合成
- * @param text  合成语音的源文本 必填
+ * @param {String} text  合成语音的源文本 必填
  * @param sessionId 类似于uuid的字符串防止重复 必填
  * @param codec 返回音频格式 选填 可取值 mp3(默认) wav
  * @param speed 语速 选填 默认0 范围 -2~2

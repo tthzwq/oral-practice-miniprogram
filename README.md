@@ -4,6 +4,7 @@
 * [运行项目](#运行项目)
     * 后端项目运行
     * 前端微信小程序运行
+* [项目部署](http://note.youdao.com/noteshare?id=6447bffd41b815a2e30dc51309bbb09d)
 #### 简介
 毕业设计 — 基于讯飞开放平台的口语练习系统，前端使用微信小程序开发，后端使用NodeJS开发，数据库采用MongoDB。<br/>
 根据[讯飞开放平台](https://www.xfyun.cn/)提供的服务，实现了语音评测、OCR识别、AIUI个人助手等功能。<br/>

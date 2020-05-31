@@ -6,6 +6,35 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/public/css/main.css" />
     <link rel="shortcut icon" type="image/x-icon" href="/public/img/heiqiu.png">
+    <style>
+      .image {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      #footer {
+        color:#939393;
+        -moz-user-select:none; /*火狐*/
+        -webkit-user-select:none; /*webkit浏览器*/
+        -ms-user-select:none; /*IE10*/
+        -khtml-user-select:none; /*早期浏览器*/
+        user-select:none;
+      }
+      #footer a {
+        display:inline-block;
+        text-decoration:none;
+        height:20px;
+        line-height:20px;
+        color:#939393;
+      }
+      #footer p {
+        float:left;
+        height:20px;
+        line-height:20px;
+        margin: 0px 0px 0px 5px;
+      }
+    </style>
 	</head>
 	<body>
 
@@ -25,7 +54,11 @@
 							<section class="thumbnails">
 								<div>
 									<a >
-										<img src="/public/img/show/ise.png" alt="" />
+										<img src="/public/img/show/home.jpg" alt="" />
+										<h3>首页</h3>
+									</a>
+									<a >
+										<img src="/public/img/show/ise.jpg" alt="" />
 										<h3>语音测评</h3>
 									</a>
 									<a  >
@@ -43,7 +76,7 @@
 								</div>
 								<div>
 									<a  >
-										<img src="/public/img/show/tts.png" alt="" />
+										<img src="/public/img/show/tts.jpg" alt="" />
 										<h3>语音合成</h3>
 									</a>
 									<a  >
@@ -51,7 +84,7 @@
 										<h3>OCR识别</h3>
 									</a>
 									<a  >
-										<img src="/public/img/show/aiui.png" alt="" />
+										<img src="/public/img/show/aiui.jpg" alt="" />
 										<h3>智能语音助手</h3>
 									</a>
 									<a  >
@@ -63,6 +96,10 @@
 									<a  >
 										<img src="/public/img/show/lfasr.png" alt="" />
 										<h3>语音转写</h3>
+									</a>
+									<a  >
+										<img src="/public/img/show/profile.jpg" alt="" />
+										<h3>个人中心</h3>
 									</a>
 									<a  >
                     <img src="/public/img/thumbs/06.jpg" alt="">
@@ -90,7 +127,18 @@
 							<li><a   class="icon style2 fa-500px"><span class="label">500px</span></a></li>
 							<li><a   class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
 						</ul>
-						<p>Copyright &copy; 2020 <br/>GitHub <a href="https://github.com/TThz-hz/oral-practice-miniprogram">TThz</a><br/><a href="http://www.beian.miit.gov.cn/">豫ICP备20005464号</a></p>
+            <div>Copyright &copy; 2020 TThz</div>
+            <div>
+              <a href="https://github.com/TThz-hz/oral-practice-miniprogram">GitHub TThz</a>
+            </div>
+            <div>
+              <a href="http://www.beian.miit.gov.cn/">豫ICP备20005464号</a>
+            </div>
+            <div >
+              <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41152702000139" >
+                <img src="/public/img/show/icon_biean.png" style="float:left;"/>
+                <p>豫公网安备 41152702000139号</p></a>
+            </div>
           </footer>
           
 			</div>

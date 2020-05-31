@@ -1,5 +1,6 @@
 const tts = require('../api/tts.js')
 const sms = require('../api/sms.js')
+const zhs = require('../api/zhihuishu.js')
 const mongo = require('../mongo/index.js')
 const {getOpenid} = require('../api/login.js')
 const express = require('express')
@@ -201,6 +202,19 @@ router.get('/findStudent', (req, res,next) => {
   console.log(req.query)
   if (req.query.classId) {
     mongo.findStudent(req.query.classId).then(data => {
+      res.json({code: 0, data})
+    }).catch(err => {
+      return next(err)
+    })
+  }else {
+    res.status(400).json({err_code:400, message:"参数错误"})
+  }
+})
+
+// 智慧树，做着玩
+router.get('/zhihuishu',(req, res,next) => {
+  if (req.query.question) {
+    zhs(req.query.question).then(data => {
       res.json({code: 0, data})
     }).catch(err => {
       return next(err)

@@ -32,7 +32,7 @@ Page({
       {
         icon: '/assets/image/students.svg',
         title: '学生信息',
-        message: '学生学习进度',
+        message: '学生状态',
         type: 'student'
       }
     ]
@@ -200,6 +200,9 @@ Page({
     wx.setClipboardData({
       data: 'https://github.com/TThz-hz/oral-practice-miniprogram',
     })
+  },
+  tap:function(){
+    console.log('+++++++++++++++++++++')
   },
   info: function() { // 个人信息
     wx.navigateTo({

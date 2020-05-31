@@ -43,6 +43,10 @@ App({
               this.globalData.userInfo = res.userInfo
               this.globalData.login = true
               wx.setStorage({
+                key: 'login',
+                data: true
+              })
+              wx.setStorage({
                 data: res.userInfo,
                 key: 'userInfo',
               })

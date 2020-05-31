@@ -4,18 +4,120 @@
 		<title>404</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="/public/css/main.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="/public/img/heiqiu.png">
     <style>
-      img {
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #222222;
+      }
+      h1 {
+        color: #333333;
+        font-size: 18rem;
         position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
       }
+      h1::after {
+        content: "404";
+        color: transparent;
+        position:absolute;
+        left: 0;
+        top: 0;
+        background: -webkit-linear-gradient(left,#29bdd9 0%, #276ace 33.3%, #e92758 66.6%, #ff9569 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        clip-path: circle(8rem at 10% 35%);
+        -webkit-clip-path:circle(8rem at 10% 35%);
+        animation: light 8s linear infinite;
+      }
+      @keyframes light {
+        0% {
+        clip-path: circle(8rem at 10% 35%);
+        -webkit-clip-path:circle(8rem at 10% 35%);
+        }
+        16.6% {
+        clip-path: circle(8rem at 44% 56%);
+        -webkit-clip-path:circle(8rem at 44% 56%);
+        }
+        33.2% {
+        clip-path: circle(8rem at 72% 44%);
+        -webkit-clip-path:circle(8rem at 72% 44%);
+        }
+        49.8% {
+        clip-path: circle(8rem at 90% 70%);
+        -webkit-clip-path:circle(8rem at 90% 70%);
+        }
+        66.4% {
+        clip-path: circle(8rem at 55% 45%);
+        -webkit-clip-path:circle(8rem at 55% 45%);
+        }
+        83% {
+        clip-path: circle(8rem at 25% 56%);
+        -webkit-clip-path:circle(8rem at 25% 56%);
+        }
+        100% {
+        clip-path: circle(8rem at 10% 35%);
+        -webkit-clip-path:circle(8rem at 10% 35%);
+        }
+      }
+      /* .image {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      } */
+      #footer {
+        position: fixed;
+        text-align: center;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        color:#939393;
+      }
+      #footer a {
+        display:inline-block;
+        text-decoration:none;
+        height:20px;
+        line-height:20px;
+        color:#939393;
+      }
+      #footer p {
+        float:left;
+        height:20px;
+        line-height:20px;
+        margin: 0px 0px 0px 5px;
+      }
     </style>
+    <script>
+      console.log(`请转到 https://www.tthzwq.com/home
+项目源码地址 https://github.com/TThz-hz/oral-practice-miniprogram`)
+    </script>
 	</head>
 	<body>
-    <img src="/public/img/404.png" alt="404" title="404">
+    <h1>404</h1>
+    <!-- <img class="image" src="/public/img/404.png" alt="404" title="404"> -->
+  <!-- Footer -->
+  <!-- 请访问 https://www.tthzwq.com/home -->
+    <!-- <footer id="footer">
+      <div>Copyright &copy; 2020 </div>
+      <div> -->
+        <!-- 项目源码地址 https://github.com/TThz-hz/oral-practice-miniprogram -->
+        <!-- 
+        <a href="https://github.com/TThz-hz/oral-practice-miniprogram">GitHub TThz</a>
+      </div>
+      <div>
+        <a href="http://www.beian.miit.gov.cn/">豫ICP备20005464号</a>
+      </div>
+      <div >
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41152702000139" >
+          <img src="/public/img/show/icon_biean.png" style="float:left;"/>
+          <p>豫公网安备 41152702000139号</p></a>
+      </div>
+    </footer> -->
+
 	</body>
+  
 </html>

@@ -20,6 +20,9 @@
     "pages/ocr/ocr",
     "pages/ocr/content/content"
   ],
+  "networkTimeout": {
+    "request": 5000
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F8F8F8",
@@ -53,7 +56,7 @@
   },
   "plugins": {
     "WechatSI": {
-      "version": "0.3.3",
+      "version": "0.3.4",
       "provider": "wx069ba97219f66d99"
     }
   },

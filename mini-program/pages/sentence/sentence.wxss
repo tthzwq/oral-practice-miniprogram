@@ -15,7 +15,8 @@
 .info {
   position: fixed;
   width: 100vw;
-  height: 29vh;
+  /* height: 29vh; */
+  height: auto;
   bottom: 0;
   left: 0;
   color: white;

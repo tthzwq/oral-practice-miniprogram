@@ -5,9 +5,9 @@ var touchStart = function (event) {
 
 var touchEnd = function (event, owner) {
   var cell = event.instance
-  var type = event.currentTarget.dataset.type
+  // var type = event.currentTarget.dataset.type
   cell.removeClass('active')
-  owner.callMethod(type)
+  // owner.callMethod(type)
 }
 module.exports = {
   touchStart: touchStart,

@@ -21,7 +21,10 @@ module.exports.findUser = function (object) {
   return user.findOne(object)
 }
 
-/** 检查是否含有该学生 */
+/**
+ *  检查是否含有该学生
+ * @param {object} studentInfo 学生信息
+ */
 module.exports.checkStudent = function (studentInfo) {
   return student.findOne(studentInfo)
 }

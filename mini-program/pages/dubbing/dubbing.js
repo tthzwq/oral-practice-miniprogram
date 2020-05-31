@@ -3,7 +3,7 @@ const App = getApp()
 /** 全局唯一录音管理器 */
 const Recorder = App.Recorder
 /** 全局唯一的文件管理器 */
-const FileSystem = App.FileSystem
+// const FileSystem = App.FileSystem
 /** 创建内部 audio 上下文 InnerAudioContext 对象 */
 const InnerAudioContext = wx.createInnerAudioContext()
 import {baseURL} from '../../network/config.js'
@@ -89,7 +89,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if(new Date().getTime()>1588867200000) { // 代码腾讯审核不通过，加个判断隐藏一下
+    if(new Date().getTime() > 1589472000000) {
       this.setData({
         show: true
       })

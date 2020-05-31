@@ -122,7 +122,7 @@ page {
   box-shadow: 0 4rpx 8rpx  #f0f3f0, 4rpx 0 8rpx  #f0f3f0, 0 -4rpx 8rpx  #f0f3f0, -4rpx 0 8rpx  #f0f3f0;
 }
 .active {
-  background-color: #ececec;
+  background-color: #f9f9f9;
 }
 .cells .cell:last-child {
   border: none;

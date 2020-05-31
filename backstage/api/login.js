@@ -1,6 +1,7 @@
 const https = require('https')
-const AppID = 'wx487727c97b99efc7'
-const AppSecret = '4cb31aa19a720569e1a237f33dcd5743'
+const {miniprogramConfig} = require('./config.js')
+const AppID = miniprogramConfig.AppID
+const AppSecret = miniprogramConfig.AppSecret
 
 /** 
  * 获取 openid

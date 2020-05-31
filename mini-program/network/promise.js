@@ -5,7 +5,7 @@
  * @param header 请求头 选填
  * @returns {Promise} Promise
 */
-export const get = ({ url, data, header }) => request({method:'GET', url, data, header});
+export const get = (config) => request({method:'GET', ...config});
 
 /**
  * 发起post请求
@@ -14,7 +14,7 @@ export const get = ({ url, data, header }) => request({method:'GET', url, data, 
  * @param header 请求头 选填
  * @returns {Promise} Promise
 */
-export const post = ({ url, data, header }) => request({ method:'POST', url, data, header});
+export const post = (config) => request({ method:'POST', ...config});
 
 /**
  * 接口请求基类方法
@@ -24,15 +24,12 @@ export const post = ({ url, data, header }) => request({ method:'POST', url, dat
  * @param header 请求头 选填
  * @returns {Promise} Promise
 */
-export function request({method, url, data, header}) {
+export function request(config) {
   wx.showNavigationBarLoading()
   return new Promise((resolve, reject) => {
     const response = {};
     wx.request({
-      url,
-      method,
-      data,
-      header,
+      ...config,
       success: res => response.success = res,
       fail: error => response.fail = error,
       complete() {

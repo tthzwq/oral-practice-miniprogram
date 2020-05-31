@@ -1,12 +1,15 @@
 <view>
 <!-- 顶部SayHello -->
   <view class="top" bindtap="switchTab" data-url="/pages/profile/profile">
-    <block wx:if="{{bindInfo.bind}}">
+  <!-- 用户已认证 -->
+    <block wx:if="{{bindInfo.bind}}"> 
       <text class="say_hello">{{sayHello}}，{{bindInfo.data.name}} {{bindInfo.data.identity == 1 ? '老师' : '同学'}}</text>
     </block>
+    <!-- 用户未认证已登录 -->
     <block wx:elif="{{login}}">
       <text class="say_hello">{{sayHello}}，{{userInfo.nickName}}</text>
     </block>
+    <!-- 用户未登录 -->
     <block wx:else>
       <text class="say_hello">未登录</text>
     </block>
