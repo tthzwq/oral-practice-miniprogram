@@ -12,6 +12,7 @@
 
 
 ### 预览
+[项目演示视频](https://1810000003.vod2.myqcloud.com/b64e98afvodcq1810000003/65a42da85285890803143537084/2776a92c73713b9b28e5adac.mp4)
 ![微信扫一扫体验](http://ww1.sinaimg.cn/large/006J9qAtly1gej3usq68nj31bi0hcmy4.jpg)
 ![image](http://ww1.sinaimg.cn/large/006J9qAtly1geiyvh6u4qj30ea0tvajy.jpg)
 ![image](http://ww1.sinaimg.cn/large/006J9qAtly1geiyv0b870j30db0s4dju.jpg)
